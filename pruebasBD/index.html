@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Papirhos: Modificar base de datos</title>
+        <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+    </head> 
+    <br>
+
+  <body>
+    <h1>Agregar Autores</h1>
+    <!-- Esta forma agarra el texto a meter en la base de datos-->
+    <form action="AgregaDatos.php" method="POST">
+      <fieldset>
+        <legend>Información de autor a agregar</legend>
+
+        <table>
+            <tr>
+                <td align="right">Nombre:</td>
+                <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+            </tr>
+            <tr>
+                <td align="right">Apellido Paterno: </td>
+                <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+            </tr>
+            <tr>
+                <td align="right">Apellido Materno: </td>
+                <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
+    
+    <script src="" async defer></script>
+    <br>
+    <h1>Borrar Autores</h1>
+    <!-- Esta forma agarra el texto a borrar en la base de datos-->
+    <form action="BorraDatos.php" method="POST">
+      <fieldset>
+        <legend>Información de autor a borrar.</legend>
+        <table>
+            <tr>
+                <td align="right">Nombre: </td>
+                <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+            </tr>
+            <tr>
+                <td align="right">Apellido Paterno: </td>
+                <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+            </tr>
+            <tr>
+                <td align="right">Apellido Materno: </td>
+                <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
+
+    <h4>(Autores en la base de datos 
+    <a href="MuestraDatos.php">aquí)</h4></a>
+
+  </body>
+</html>

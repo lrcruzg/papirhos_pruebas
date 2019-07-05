@@ -39,7 +39,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "pruebasBD";
+    $dbname = "pruebasbd";
 
     if($_POST) {
 
@@ -73,6 +73,7 @@
             <tr>
                 <th>Título</th>
                 <th>Precio Descuento</th>
+                <th>Cantidad</th>
             </tr>
         </thead>
         <tbody>
@@ -85,6 +86,7 @@
                 echo '<tr id="op">
                             <td id="op"><input type="checkbox" name="busq" value="'.$row['titulo'].'">'.$row['titulo'].'</td>
                             <td id="op" align="center">$'.$row['precio_descuento'].'</td>
+                            <td><input type="number" name="quantity"  value="1" min="1"></td>
                     </tr>';
             }
 
@@ -94,21 +96,9 @@
         </tbody>    
     </table>
         <input type="submit" value="Vender">
+        <input type="reset" value="Reset" >
     </form>
-    <!--
-    <form action="Ventas.php" method="POST">
-      <fieldset>
-        <legend>Elige el libro</legend>
-        <b>Colección:</b>
-        <input type="radio" name="col" value="Papir" checked> Papirhos
-        <input type="radio" name="col" value="Txt"> Textos
-        <input type="radio" name="col" value="Olimp"> Olimpiadas
-        <input type="radio" name="col" value=""> Otro
-        <br>
-        <input type="submit" value="Submit" />
-      </fieldset>
-    </form>
-    -->
+
     <script src="" async defer></script>
     <br>
   </body>

@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -48,9 +47,9 @@ if (!$query) {
 			while ($row = mysqli_fetch_array($query)) {
 				echo '<tr>
 						<td>'.$row['id_autores'].'</td>
-	                    <td>'.$row['nombre'].'</td>
-						<td>'.$row['apellido_paterno'].'</td>
-						<td>'.$row['apellido_materno'].'</td>
+	                    <td>'.utf8_encode($row['nombre']).'</td>
+						<td>'.utf8_encode($row['apellido_paterno']).'</td>
+						<td>'.utf8_encode($row['apellido_materno']).'</td>
 					</tr>';
 			}
 		?>

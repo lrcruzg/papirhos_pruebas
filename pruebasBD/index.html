@@ -4,71 +4,102 @@
         <title>Papirhos: Modificar base de datos</title>
         <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
     </head> 
-    <br>
+    <body>
+        <h1 align="center">Papirhos</h1>
 
-  <body>
-    <h1 align="center">Papirhos</h1>
+        <h2>Ventas</h2>
+        <form action="Ventas.php" method="POST">
+            <fieldset>            
+                Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
+                <input type="submit" value="Buscar">
+            </fieldset>
+        </form>
 
-    <h2>Ventas</h2>
-    <form action="Ventas.php" method="POST">
-        <fieldset>            
-            Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
-            <input type="submit" value="Buscar">
-        </fieldset>
-    </form>
 
-    <h2>Agregar Autores</h2>
-    <form action="AgregaDatos.php" method="POST">
-      <fieldset>
-        <legend>Información de autor a agregar</legend>
+        <h2>Agregar Libro</h2>
+        <form action="AgregaLibro.php" method="POST">
+          <fieldset>
+            <legend>Información del libro a agregar</legend>
 
-        <table>
-            <tr>
-                <td align="right">Nombre:</td>
-                <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-            </tr>
-            <tr>
-                <td align="right">Apellido Paterno: </td>
-                <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-            </tr>
-            <tr>
-                <td align="right">Apellido Materno: </td>
-                <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-            </tr>
-        </table>
-        <input type="reset" value="Reset">
-        <input type="submit" value="Agregar">
-      </fieldset>
-    </form>
-    
-    <script src="" async defer></script>
-    <br>
-    <h2>Borrar Autores</h2>
-    <!-- Esta forma agarra el texto a borrar en la base de datos-->
-    <form action="BorraDatos.php" method="POST">
-      <fieldset>
-        <legend>Información de autor a borrar.</legend>
-        <table>
-            <tr>
-                <td align="right">Nombre: </td>
-                <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-            </tr>
-            <tr>
-                <td align="right">Apellido Paterno: </td>
-                <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-            </tr>
-            <tr>
-                <td align="right">Apellido Materno: </td>
-                <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-            </tr>
-        </table>
-        <input type="reset" value="Reset">
-        <input type="submit" value="Eliminar">
-      </fieldset>
-    </form>
+            <table>
+                <tr>
+                    <td align="right">Título:</td>
+                    <td><input type="text" name="tit" placeholder="Título del libro" required></td>
+                </tr>
 
-    <h4>(Autores en la base de datos 
-    <a href="MuestraDatos.php">aquí)</h4></a>
+                <tr>
+                    <td align="right">Colección:</td>
+                    <td><input type="text" name="colecc" placeholder="ej. Papirhos " required></td>
+                </tr>
 
-  </body>
+                <tr>
+                    <td align="right">Serie:</td>
+                    <td><input type="text" name="ser" placeholder="ej. Mixbaal" required></td>
+                </tr>
+
+                <tr>
+                    <td align="right">Núm de Serie:</td>
+                    <td><input type="text" name="numser" placeholder="ej. 1" required></td>
+                </tr>
+
+            </table>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Agregar" />
+          </fieldset>
+        </form>
+
+
+        <h2>Agregar Autores</h2>
+        <form action="AgregaDatos.php" method="POST">
+          <fieldset>
+            <legend>Información de autor a agregar</legend>
+
+            <table>
+                <tr>
+                    <td align="right">Nombre:</td>
+                    <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Apellido Paterno: </td>
+                    <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Apellido Materno: </td>
+                    <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+                </tr>
+            </table>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Agregar">
+          </fieldset>
+        </form>
+        
+        <script src="" async defer></script>
+        <br>
+        <h2>Borrar Autores</h2>
+        <form action="BorraDatos.php" method="POST">
+          <fieldset>
+            <legend>Información de autor a borrar.</legend>
+            <table>
+                <tr>
+                    <td align="right">Nombre: </td>
+                    <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Apellido Paterno: </td>
+                    <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Apellido Materno: </td>
+                    <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+                </tr>
+            </table>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Eliminar">
+          </fieldset>
+        </form>
+
+        <h4>(Autores en la base de datos 
+        <a href="MuestraDatos.php">aquí)</h4></a>
+
+    </body>
 </html>

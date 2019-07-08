@@ -4,18 +4,17 @@
         <title>Papirhos - Ventas</title>
         <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
         <style>
-            input[type="text"] { width: 200%; }
-            table#op {
+            table {
               font-family: arial, sans-serif;
               border-collapse: collapse;
             }
 
-            td#op, th#op {
+            td, th {
               border: 1px solid #dddddd;
               padding: 3px;
             }
 
-            tr:nth-child#op(even) {
+            tr:nth-child(even) {
               background-color: #dddddd;
             }
         </style>
@@ -23,27 +22,13 @@
     <br>
 
   <body>
-    <h1>Ventas</h1>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-        <table>
-            <tr>
-                <td align="right">Buscar libro: </td>
-                <td><input type="text" name="tit" placeholder="Título, Autor"></td>
-            </tr>
-        </table>
-        <input type="submit" value="Buscar">
-    </form>
-
     <?php
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "pruebasbd";
-
-    if($_POST) {
-
-    $busqueda = $_POST["tit"];
+    $dbname = "pruebasBD";
+    
+    $busqueda = $_POST["q"];
 
     // Crea la conexion
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -64,10 +49,11 @@
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    }   
+   
     ?>
+    <h2 align="center">Ventas</h2>
     <form>
-    <table id="op">
+    <table>
         <caption class="title"><b>Resultados</caption>
         <thead>
             <tr>
@@ -80,23 +66,24 @@
     
         <?php
             
-        if($_POST) {
-        
-            while ($row = mysqli_fetch_array($query)) {
-                echo '<tr id="op">
-                            <td id="op"><input type="checkbox" name="busq" value="'.$row['titulo'].'">'.$row['titulo'].'</td>
-                            <td id="op" align="center">$'.$row['precio_descuento'].'</td>
-                            <td><input type="number" name="quantity"  value="1" min="1"></td>
-                    </tr>';
-            }
-
+        while ($row = mysqli_fetch_array($query)) {
+            echo '<tr>
+                        <td><input type="checkbox" name="busq" value="'.$row['titulo'].'">'.$row['titulo'].'</td>
+                        <td align="center">$'.$row['precio_descuento'].'</td>
+                        <td><input type="number" name="quantity"  value="1" min="1"></td>
+                </tr>';
         }
+
         ?>
     
         </tbody>    
     </table>
-        <input type="submit" value="Vender">
         <input type="reset" value="Reset" >
+        <input type="submit" value="Vender">
+    </form>
+    <br>
+    <form action="index.html">
+        <input type="submit" value="Regresar" />
     </form>
 
     <script src="" async defer></script>

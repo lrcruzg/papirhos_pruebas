@@ -7,8 +7,17 @@
     <br>
 
   <body>
-    <h1>Agregar Autores</h1>
-    <!-- Esta forma agarra el texto a meter en la base de datos-->
+    <h1 align="center">Papirhos</h1>
+
+    <h2>Ventas</h2>
+    <form action="Ventas.php" method="POST">
+        <fieldset>            
+            Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
+            <input type="submit" value="Buscar">
+        </fieldset>
+    </form>
+
+    <h2>Agregar Autores</h2>
     <form action="AgregaDatos.php" method="POST">
       <fieldset>
         <legend>Información de autor a agregar</legend>
@@ -27,13 +36,14 @@
                 <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
             </tr>
         </table>
-        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset">
+        <input type="submit" value="Agregar">
       </fieldset>
     </form>
     
     <script src="" async defer></script>
     <br>
-    <h1>Borrar Autores</h1>
+    <h2>Borrar Autores</h2>
     <!-- Esta forma agarra el texto a borrar en la base de datos-->
     <form action="BorraDatos.php" method="POST">
       <fieldset>
@@ -52,7 +62,8 @@
                 <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
             </tr>
         </table>
-        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset">
+        <input type="submit" value="Eliminar">
       </fieldset>
     </form>
 

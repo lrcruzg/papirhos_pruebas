@@ -1,8 +1,8 @@
 <?php
 //Variables que fueron pasadas por index.html
-$nom = $_POST["Nombre"];
-$ApellidoP = $_POST["ApellidoPaterno"];
-$ApellidoM = $_POST["ApellidoMaterno"];
+$nom = utf8_encode($_POST["Nombre"]);
+$ApellidoP = utf8_encode($_POST["ApellidoPaterno"]);
+$ApellidoM = utf8_encode($_POST["ApellidoMaterno"]);
 
 $servername = "localhost";
 $username = "root";
@@ -11,6 +11,7 @@ $dbname = "pruebasBD";
 
 $message = "";
 
+/*
 // Crea la conexion
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -49,6 +50,7 @@ else if((int) $row['num'] == 0) {
 
 $conn->close();
 
+ */
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +63,7 @@ $conn->close();
     <h1>Agregar Autor</h1>
     <?php
     echo "<h2>$message</h2>";
+    echo "<h2>".$nom." ".$ApellidoP." ".$ApellidoM."</h2>";
     ?>
 </body>
 </html>

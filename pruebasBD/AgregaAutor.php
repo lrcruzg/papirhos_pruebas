@@ -4,7 +4,6 @@ $nom = $_POST["Nombre"];
 $ApellidoP = $_POST["ApellidoPaterno"];
 $ApellidoM = $_POST["ApellidoMaterno"];
 
-// Cambiar a cualquier otro valor para trabajar en otra maquina
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -20,15 +19,15 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-// <<<<<<<<<< Modificar >>>>>>>>>>>
+// <<<<<<<<<< REVISAR A PARTIR DE AQUÍ >>>>>>>>>>>
 
+// verifica si hay otro autor en la base con el mismo nombre y apellidos y los cuenta
 $duplicado = "SELECT COUNT(nombre) AS num FROM autores_aux
 WHERE nombre = '$nom' AND  apellido_paterno = '$ApellidoP' AND apellido_materno = '$ApellidoM'";
 
 $query = mysqli_query($conn, $duplicado);
 
 $row = mysqli_fetch_array($query);
-
 
 if((int) $row['num'] > 0) {
     $message = "El autor YA está en la base de datos";
@@ -53,12 +52,15 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Hola</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Papirhos: Modificar base de datos</title>
+        <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+    </head>
 <body>
-    <h1>Hola!</h1>
-    <?php echo "<h2>$message</h2>"; ?>
+    <h1>Agregar Autor</h1>
+    <?php
+    echo "<h2>$message</h2>";
+    ?>
 </body>
 </html>

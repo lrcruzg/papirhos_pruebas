@@ -9,8 +9,6 @@ $username = "root";
 $password = "";
 $dbname = "pruebasBD";
 
-$message = "";
-
 // Crea la conexion
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -22,31 +20,33 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-// verifica si hay otro autor en la base con el mismo nombre y apellidos y los cuenta
-$duplicado = "SELECT COUNT(nombre) AS num FROM autores_aux
+// verifica si existe en la base el autor a borrar
+$existe = "SELECT COUNT(nombre) AS num FROM autores_aux
 WHERE nombre = '$nom' 
 AND  apellido_paterno = '$ApellidoP' 
 AND apellido_materno = '$ApellidoM'";
 
-$query = mysqli_query($conn, $duplicado);
+$query = mysqli_query($conn, $existe);
 
 $row = mysqli_fetch_array($query);
 
-$esta_repetido = ((int)$row['num'] == 0) ? FALSE : TRUE; 
- 
-if($esta_repetido) {
-    $message = "El autor ".$nom." ".$ApellidoP." ".$ApellidoM." YA está en la base de datos";
+$existe_autor = ((int)$row['num'] == 0) ? FALSE : TRUE;
+
+if(!$existe_autor) {
+	$message = "$nom $ApellidoP $ApellidoM no existe en la base.";
 }
 
-else {    
-    $sql = "INSERT INTO autores_aux (nombre, apellido_paterno, apellido_materno)
-    VALUES ('$nom', '$ApellidoP', '$ApellidoM')";
+if($existe_autor) {
+	$sql = "DELETE FROM autores_aux 
+	WHERE nombre = '$nom' 
+	AND apellido_paterno = '$ApellidoP' 
+	AND apellido_materno = '$ApellidoM'";
 
-    if ($conn->query($sql) === TRUE) {
-        $message = $message."<br>$nom $ApellidoP $ApellidoM fue agregado a la base de manera exitosa.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+	if ($conn->query($sql) === TRUE) {
+	    $message = "$nom $ApellidoP $ApellidoM fue borrado de manera exitosa.";
+	} else {
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 }
 
 $conn->close();
@@ -60,7 +60,7 @@ $conn->close();
         <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
     </head>
 <body>
-    <h1>Agregar Autor</h1>
+    <h1>Eliminar Autor</h1>
     <?php
     echo "<h2>$message</h2>";
     ?>

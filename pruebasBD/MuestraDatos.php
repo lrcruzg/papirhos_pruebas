@@ -25,15 +25,31 @@ if (!$query) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Datos de Autor</title>
+	<title>Autores</title>
+	<link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+	<style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          padding: 3px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
 	<h1>Tabla de Autores</h1>
     <form action="index.html">
 	    <input type="submit" value="Regresar" />
 	</form>
-	<table class="data-table">
-		<caption class="title">Autores</caption>
+	<table class="data-table" align="center">
+		<caption class="title"><b>Autores</caption>
 		<thead>
 			<tr>
 				<th>ID Autores</th>
@@ -46,7 +62,7 @@ if (!$query) {
 		<?php
 			while ($row = mysqli_fetch_array($query)) {
 				echo '<tr>
-						<td>'.$row['id_autores'].'</td>
+						<td align="center">'.$row['id_autores'].'</td>
 	                    <td>'.utf8_encode($row['nombre']).'</td>
 						<td>'.utf8_encode($row['apellido_paterno']).'</td>
 						<td>'.utf8_encode($row['apellido_materno']).'</td>

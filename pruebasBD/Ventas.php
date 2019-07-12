@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
         <title>Papirhos - Ventas</title>
@@ -29,13 +29,16 @@
         $dbname = "pruebasBD";
 
         $busqueda = $_POST["q"];
+        
+        $busqueda = trim($busqueda);
+        $busqueda = stripslashes($busqueda);
+        $busqueda = htmlspecialchars($busqueda);
 
         // Crea la conexion
         $conn = new mysqli($servername, $username, $password, $dbname);
 
         // IMPORTANTE, los acentos no funcionan sin esto
         $acentos = $conn->query("SET NAMES 'utf8'");
-
 
         // Revisa la conexion
         if ($conn->connect_error) {

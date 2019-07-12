@@ -1,8 +1,18 @@
 <?php
-//Variables que fueron pasadas por index.html
-$nom = $_POST["Nombre"];
-$ApellidoP = $_POST["ApellidoPaterno"];
-$ApellidoM = $_POST["ApellidoMaterno"];
+$Nombre = $ApellidoP = $ApellidoM = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Nombre = test_input($_POST["Nombre"]);
+    $ApellidoP = test_input($_POST["ApellidoPaterno"]);
+    $ApellidoM = test_input($_POST["ApellidoMaterno"]);
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 $servername = "localhost";
 $username = "root";
@@ -24,7 +34,7 @@ if ($conn->connect_error) {
 
 // verifica si hay otro autor en la base con el mismo nombre y apellidos y los cuenta
 $duplicado = "SELECT COUNT(nombre) AS num FROM autores_aux
-WHERE nombre = '$nom' 
+WHERE nombre = '$Nombre' 
 AND  apellido_paterno = '$ApellidoP' 
 AND apellido_materno = '$ApellidoM'";
 
@@ -35,15 +45,15 @@ $row = mysqli_fetch_array($query);
 $esta_repetido = ((int)$row['num'] == 0) ? FALSE : TRUE; 
  
 if($esta_repetido) {
-    $message = "El autor ".$nom." ".$ApellidoP." ".$ApellidoM." YA está en la base de datos";
+    $message = "El autor ".$Nombre." ".$ApellidoP." ".$ApellidoM." YA está en la base de datos";
 }
 
 else {    
     $sql = "INSERT INTO autores_aux (nombre, apellido_paterno, apellido_materno)
-    VALUES ('$nom', '$ApellidoP', '$ApellidoM')";
+    VALUES ('$Nombre', '$ApellidoP', '$ApellidoM')";
 
     if ($conn->query($sql) === TRUE) {
-        $message = $message."<br>$nom $ApellidoP $ApellidoM fue agregado a la base de manera exitosa.";
+        $message = $message."<br>$Nombre $ApellidoP $ApellidoM fue agregado a la base de manera exitosa.";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

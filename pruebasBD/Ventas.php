@@ -33,6 +33,10 @@
         // Crea la conexion
         $conn = new mysqli($servername, $username, $password, $dbname);
 
+        // IMPORTANTE, los acentos no funcionan sin esto
+        $acentos = $conn->query("SET NAMES 'utf8'");
+
+
         // Revisa la conexion
         if ($conn->connect_error) {
             die("Conexion fallida: " . $conn->connect_error);
@@ -68,7 +72,7 @@
                     
                 while ($row = mysqli_fetch_array($query)) {
                     echo '<tr>
-                                <td><input type="checkbox" name="busq" value="'.utf8_encode($row['titulo']).'">'.utf8_encode($row['titulo']).'</td>
+                                <td><input type="checkbox" name="busq" value="'.$row['titulo'].'">'.$row['titulo'].'</td>
                                 <td align="center">$'.$row['precio_descuento'].'</td>
                                 <td><input type="number" name="quantity"  value="1" min="1"></td>
                         </tr>';

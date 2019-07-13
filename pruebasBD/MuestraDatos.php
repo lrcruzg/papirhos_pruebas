@@ -54,8 +54,6 @@ if (!$query) {
 			<tr>
 				<th>ID Autores</th>
 				<th>Nombre</th>
-				<th>Apellido Paterno</th>
-				<th>Apellido Materno</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -63,9 +61,11 @@ if (!$query) {
 			while ($row = mysqli_fetch_array($query)) {
 				echo '<tr>
 						<td align="center">'.$row['id_autores'].'</td>
-	                    <td>'.utf8_encode($row['nombre']).'</td>
-						<td>'.utf8_encode($row['apellido_paterno']).'</td>
-						<td>'.utf8_encode($row['apellido_materno']).'</td>
+	                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'">'.
+	                    utf8_encode($row['nombre']).' '.
+	                    utf8_encode($row['apellido_paterno']).' '.
+	                    utf8_encode($row['apellido_materno']).
+	                    '</a></td>
 					</tr>';
 			}
 		?>

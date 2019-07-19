@@ -45,9 +45,11 @@ if (!$query) {
 </head>
 <body>
 	<h1>Tabla de Autores</h1>
-    <form action="index.html">
-	    <input type="submit" value="Regresar" />
-	</form>
+	<nav>
+		<a href="/PruebasBD/index.html">Inicio</a> |
+		<a href="/PruebasBD/MuestraDatos.php">Autores</a> |
+	</nav>
+
 	<table class="data-table" align="center">
 		<caption class="title"><b>Autores</caption>
 		<thead>

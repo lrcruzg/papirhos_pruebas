@@ -71,6 +71,11 @@ $conn->close();
     </head>
 <body>
     <h1>Agregar Autor</h1>
+    <nav>
+        <a href="/PruebasBD/index.html">Inicio</a> |
+        <a href="/PruebasBD/MuestraDatos.php">Autores</a> |
+    </nav>
+
     <?php
     echo "<h2>$message</h2>";
     ?>

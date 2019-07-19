@@ -48,6 +48,10 @@ if (!$query) {
     </style>
 </head>
 <body>
+	<nav>
+        <a href="/PruebasBD/index.html">Inicio</a> |
+        <a href="/PruebasBD/MuestraDatos.php">Autores</a> |
+	</nav>
 	<table align="center">
 		<caption class="title"><b>Libros escritos por ...</caption>
 		<thead>

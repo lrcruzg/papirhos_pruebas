@@ -73,7 +73,8 @@ $conn->close();
     <h1>Agregar Autor</h1>
     <nav>
         <a href="/PruebasBD/index.html">Inicio</a> |
-        <a href="/PruebasBD/MuestraDatos.php">Autores</a> |
+        <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
+        <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
     </nav>
 
     <?php

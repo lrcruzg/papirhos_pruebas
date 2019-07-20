@@ -65,7 +65,8 @@ if (!$query) {
         <h2 align="center">Ventas</h2>
         <nav>
             <a href="/PruebasBD/index.html">Inicio</a> |
-            <a href="/PruebasBD/MuestraDatos.php">Autores</a> |
+            <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
+            <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
         </nav>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

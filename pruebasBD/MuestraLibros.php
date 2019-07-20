@@ -1,6 +1,4 @@
 <?php
-$id = $_GET['autor'];
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,10 +12,7 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-$sql = "SELECT titulo, coleccion, serie FROM libros_autores_aux
-		JOIN libros_aux
-			ON libros_aux.id_libros = libros_autores_aux.id_libros
-		WHERE id_autores = '$id'";
+$sql = "SELECT * FROM libros_aux ORDER BY id_libros ASC";
 
 $query = mysqli_query($conn, $sql);
 
@@ -26,10 +21,11 @@ if (!$query) {
 }
 
 ?>
+
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Autores</title>
+	<title>Libros</title>
 	<link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
 	<style>
         table {
@@ -48,31 +44,45 @@ if (!$query) {
     </style>
 </head>
 <body>
-	<nav>
+	<h1>Tabla de Libros</h1>
+    <nav>
         <a href="/PruebasBD/index.html">Inicio</a> |
         <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
         <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
     </nav>
-	<table align="center">
-		<caption class="title"><b>Libros escritos por ...</caption>
+
+	<table class="data-table" align="center">
+		<caption class="title"><b>Libros</caption>
 		<thead>
 			<tr>
+				<th>Id</th>
 				<th>Título</th>
-				<th>Coleccíon</th>
+				<th>Colección</th>
 				<th>Serie</th>
+
 			</tr>
 		</thead>
 		<tbody>
 		<?php
 			while ($row = mysqli_fetch_array($query)) {
 				echo '<tr>
-						<td>'.utf8_encode($row['titulo']).'</td>
-	                    <td>'.utf8_encode($row['coleccion']).'</td>
-	                    <td>'.utf8_encode($row['serie']).'</td>
+						<td align="center">'.$row['id_libros'].'</td>
+	                    <td>
+	                    	<a href="DatosAutor.php?autor='.$row['id_libros'].'">'.
+	                    		utf8_encode($row['titulo']).'
+	                    	</a>
+	                    </td>
+	                    <td>'.
+	                    	utf8_encode($row['coleccion']).'
+	                    </td>
+	                    <td>'.
+	                    	utf8_encode($row['serie']).
+	                    '</td>
 					</tr>';
 			}
 		?>
 		</tbody>
+		
 	</table>
 </body>
 </html>

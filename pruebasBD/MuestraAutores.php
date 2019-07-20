@@ -1,6 +1,4 @@
 <?php
-$id = $_GET['autor'];
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,10 +12,7 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-$sql = "SELECT titulo, coleccion, serie FROM libros_autores_aux
-		JOIN libros_aux
-			ON libros_aux.id_libros = libros_autores_aux.id_libros
-		WHERE id_autores = '$id'";
+$sql = "SELECT * FROM autores_aux ORDER BY id_autores ASC";
 
 $query = mysqli_query($conn, $sql);
 
@@ -26,6 +21,7 @@ if (!$query) {
 }
 
 ?>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -48,31 +44,36 @@ if (!$query) {
     </style>
 </head>
 <body>
-	<nav>
+	<h1 align="center">Tabla de Autores</h1>
+    <nav>
         <a href="/PruebasBD/index.html">Inicio</a> |
         <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
         <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
     </nav>
-	<table align="center">
-		<caption class="title"><b>Libros escritos por ...</caption>
+
+	<table class="data-table" align="center">
+		<caption class="title"><b>Autores</caption>
 		<thead>
 			<tr>
-				<th>Título</th>
-				<th>Coleccíon</th>
-				<th>Serie</th>
+				<th>ID Autores</th>
+				<th>Nombre</th>
 			</tr>
 		</thead>
 		<tbody>
 		<?php
 			while ($row = mysqli_fetch_array($query)) {
 				echo '<tr>
-						<td>'.utf8_encode($row['titulo']).'</td>
-	                    <td>'.utf8_encode($row['coleccion']).'</td>
-	                    <td>'.utf8_encode($row['serie']).'</td>
+						<td align="center">'.$row['id_autores'].'</td>
+	                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'">'.
+	                    utf8_encode($row['nombre']).' '.
+	                    utf8_encode($row['apellido_paterno']).' '.
+	                    utf8_encode($row['apellido_materno']).
+	                    '</a></td>
 					</tr>';
 			}
 		?>
 		</tbody>
+		
 	</table>
 </body>
 </html>

@@ -29,8 +29,13 @@ if (!$query) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Autores</title>
+	<title>Libros por Autor</title>
 	<link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+	<link rel="stylesheet" type="text/css" href="css/menu2.css">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <meta name="viewport" content="initial-scale=1">
 	<style>
         table {
           font-family: arial, sans-serif;
@@ -48,31 +53,61 @@ if (!$query) {
     </style>
 </head>
 <body>
-	<nav>
-        <a href="/PruebasBD/index.html">Inicio</a> |
-        <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
-        <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
-    </nav>
-	<table align="center">
-		<caption class="title"><b>Libros escritos por ...</caption>
-		<thead>
-			<tr>
-				<th>Título</th>
-				<th>Coleccíon</th>
-				<th>Serie</th>
-			</tr>
-		</thead>
-		<tbody>
-		<?php
-			while ($row = mysqli_fetch_array($query)) {
-				echo '<tr>
-						<td>'.utf8_encode($row['titulo']).'</td>
-	                    <td>'.utf8_encode($row['coleccion']).'</td>
-	                    <td>'.utf8_encode($row['serie']).'</td>
-					</tr>';
-			}
-		?>
-		</tbody>
-	</table>
+
+	<div id="contenedor">
+
+		<div id="encabezado">
+          <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
+          </div>
+          <div id="logomid">
+          </div>
+          <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+          </div>
+        </div>
+
+        <div id="menuencabezado">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/PruebasBD/index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/PruebasBD/MuestraAutores.php">Autores</a>
+                    </li>
+                    <li>
+                        <a href="/PruebasBD/MuestraLibros.php">Libros</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <div id="contenido">
+        	<h2>Libros Escritos por ...</h2>
+			<table align="center">
+				<thead>
+					<tr>
+						<th>Título</th>
+						<th>Coleccíon</th>
+						<th>Serie</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+					while ($row = mysqli_fetch_array($query)) {
+						echo '<tr>
+								<td>'.utf8_encode($row['titulo']).'</td>
+			                    <td>'.utf8_encode($row['coleccion']).'</td>
+			                    <td>'.utf8_encode($row['serie']).'</td>
+							</tr>';
+					}
+				?>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	
+	
 </body>
 </html>

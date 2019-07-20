@@ -35,78 +35,107 @@ if (!$query) {
 ?>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Papirhos - Ventas</title>
-        <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
-        <style>
-            table {
-              font-family: arial, sans-serif;
-              border-collapse: collapse;
-            }
+<head>
+    <meta charset="utf-8">
+    <title>Ventas</title>
+    <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+    <link rel="stylesheet" type="text/css" href="css/menu2.css">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <meta name="viewport" content="initial-scale=1">
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+        }
 
-            td, th {
-              border: 1px solid #dddddd;
-              padding: 3px;
-            }
+        td, th {
+          border: 1px solid #dddddd;
+          padding: 3px;
+        }
 
-            tr:nth-child(even) {
-              background-color: #dddddd;
-            }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+</head>
 
-            input[type="number"] {
-                width: 50px;
-            }
-        </style>
-    </head>
-    
-    <body>
+<body>
+    <div id="contenedor">
 
-        <h2 align="center">Ventas</h2>
-        <nav>
-            <a href="/PruebasBD/index.html">Inicio</a> |
-            <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
-            <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
-        </nav>
+        <div id="encabezado">
+          <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
+          </div>
+          <div id="logomid">
+          </div>
+          <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+          </div>
+        </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <form>
-            <table>
-                <caption class="title"><b>Resultados</caption>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Precio Descuento</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                <?php
+        <div id="menuencabezado">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/PruebasBD/index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/PruebasBD/MuestraAutores.php">Autores</a>
+                    </li>
+                    <li>
+                        <a href="/PruebasBD/MuestraLibros.php">Libros</a>
+                    </li>
                     
-                while ($row = mysqli_fetch_array($query)) {
-                    echo '<tr>
-                                <td><input class="input enable" type="checkbox" name="busq" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
-                                <td align="center">$'.$row['precio_descuento'].'</td>
-                                <td align="center"><input type="number" name="quantity" value="1" min="1" disabled></td>
-                        </tr>';
-                }
+                </ul>
+            </nav>
+        </div>
 
-                ?>
+        <div id="contenido">
 
-                </tbody>    
-            </table>
-            <input type="submit" value="Vender">
-        </form>
+            <h2 align="center">Ventas</h2>
 
-        <!-- https://stackoverflow.com/questions/29596147/relate-a-checkbox-with-another-input -->
-        <script type="text/javascript">
-            $('.enable').change(function(){
-            var set =  $(this).is(':checked') ? false : true;
-            $(this).closest('td').siblings().find('input').attr('disabled',set);  
-            });
-        </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <form>
+                <table>
+                    <caption class="title"><b>Resultados</caption>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Precio Descuento</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <script src="" async defer></script>
-    </body>
+                    <?php
+                        
+                    while ($row = mysqli_fetch_array($query)) {
+                        echo '<tr>
+                                    <td><input class="input enable" type="checkbox" name="busq" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
+                                    <td align="center">$'.$row['precio_descuento'].'</td>
+                                    <td align="center"><input type="number" name="quantity" value="1" min="1" disabled></td>
+                            </tr>';
+                    }
+
+                    ?>
+
+                    </tbody>    
+                </table>
+                <input type="submit" value="Vender">
+            </form>
+
+            <!-- https://stackoverflow.com/questions/29596147/relate-a-checkbox-with-another-input -->
+            <script type="text/javascript">
+                $('.enable').change(function(){
+                var set =  $(this).is(':checked') ? false : true;
+                $(this).closest('td').siblings().find('input').attr('disabled',set);  
+                });
+            </script>
+
+            <script src="" async defer></script>
+
+        </div>
+    </div>
+  
+</body>
 </html>

@@ -1,107 +1,137 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <title>Papirhos: Modificar base de datos</title>
+        <title>Papirhos</title>
         <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+        <link rel="stylesheet" type="text/css" href="css/menu2.css">
+        <link rel="stylesheet" type="text/css" href="css/general.css">
+        <link rel="stylesheet" type="text/css" href="css/media.css">
+        <link rel="stylesheet" type="text/css" href="css/grid.css">
+        <meta name="viewport" content="initial-scale=1"></head>
     </head> 
     <body>
-        <h1 align="center">Papirhos</h1>
+        <div id="contenedor">
+            
+            <div id="encabezado">
+              <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
+              </div>
+              <div id="logomid">
+              </div>
+              <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+              </div>
+            </div>
 
-        <nav>
-            <a href="/PruebasBD/index.html">Inicio</a> |
-            <a href="/PruebasBD/MuestraDatos.php">Autores</a> |
-        </nav>
-
-        <h2>Ventas</h2>
-        <form action="Ventas.php" method="POST">
-            <fieldset>            
-                Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
-                <input type="submit" value="Buscar">
-            </fieldset>
-        </form>
-
-
-        <h2>Agregar Libro</h2>
-        <form action="AgregaLibro.php" method="POST">
-          <fieldset>
-            <legend>Información del libro a agregar</legend>
-
-            <table>
-                <tr>
-                    <td align="right">Título:</td>
-                    <td><input type="text" name="tit" placeholder="Título del libro" required></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Colección:</td>
-                    <td><input type="text" name="colecc" placeholder="ej. Papirhos " required></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Serie:</td>
-                    <td><input type="text" name="ser" placeholder="ej. Mixbaal" required></td>
-                </tr>
-
-                <tr>
-                    <td align="right">Núm de Serie:</td>
-                    <td><input type="text" name="numser" placeholder="ej. 1" required></td>
-                </tr>
-
-            </table>
-            <input type="reset" value="Reset">
-            <input type="submit" value="Agregar" />
-          </fieldset>
-        </form>
+            <div id="menuencabezado">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/PruebasBD/index.html">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="/PruebasBD/MuestraAutores.php">Autores</a>
+                        </li>
+                        <li>
+                            <a href="/PruebasBD/MuestraLibros.php">Libros</a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+            <div id="contenido">
+                <h2>Ventas</h2>
+                <form action="Ventas.php" method="POST">
+                    <fieldset>            
+                        Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
+                        <input type="submit" value="Buscar">
+                    </fieldset>
+                </form>
 
 
-        <h2>Agregar Autores</h2>
-        <form action="AgregaAutor.php" method="POST">
-          <fieldset>
-            <legend>Información de autor a agregar</legend>
+                <h2>Agregar Libro</h2>
+                <form action="AgregaLibro.php" method="POST">
+                  <fieldset>
+                    <legend>Información del libro a agregar</legend>
 
-            <table>
-                <tr>
-                    <td align="right">Nombre:</td>
-                    <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-                </tr>
-                <tr>
-                    <td align="right">Apellido Paterno: </td>
-                    <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-                </tr>
-                <tr>
-                    <td align="right">Apellido Materno: </td>
-                    <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-                </tr>
-            </table>
-            <input type="reset" value="Reset">
-            <input type="submit" value="Agregar">
-          </fieldset>
-        </form>
+                    <table>
+                        <tr>
+                            <td align="right">Título:</td>
+                            <td><input type="text" name="tit" placeholder="Título del libro" required></td>
+                        </tr>
+
+                        <tr>
+                            <td align="right">Colección:</td>
+                            <td><input type="text" name="colecc" placeholder="ej. Papirhos " required></td>
+                        </tr>
+
+                        <tr>
+                            <td align="right">Serie:</td>
+                            <td><input type="text" name="ser" placeholder="ej. Mixbaal" required></td>
+                        </tr>
+
+                        <tr>
+                            <td align="right">Núm de Serie:</td>
+                            <td><input type="text" name="numser" placeholder="ej. 1" required></td>
+                        </tr>
+
+                    </table>
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Agregar" />
+                  </fieldset>
+                </form>
+
+
+                <h2>Agregar Autores</h2>
+                <form action="AgregaAutor.php" method="POST">
+                  <fieldset>
+                    <legend>Información de autor a agregar</legend>
+
+                    <table>
+                        <tr>
+                            <td align="right">Nombre:</td>
+                            <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Apellido Paterno: </td>
+                            <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Apellido Materno: </td>
+                            <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+                        </tr>
+                    </table>
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Agregar">
+                  </fieldset>
+                </form>
+                
+                <script src="" async defer></script>
+                <br>
+                <h2>Borrar Autores</h2>
+                <form action="BorraAutor.php" method="POST">
+                  <fieldset>
+                    <legend>Información de autor a borrar.</legend>
+                    <table>
+                        <tr>
+                            <td align="right">Nombre: </td>
+                            <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Apellido Paterno: </td>
+                            <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Apellido Materno: </td>
+                            <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
+                        </tr>
+                    </table>
+                    <input type="reset" value="Reset">
+                    <input type="submit" value="Eliminar">
+                  </fieldset>
+                </form>
+
+            </div>
+        </div>
         
-        <script src="" async defer></script>
-        <br>
-        <h2>Borrar Autores</h2>
-        <form action="BorraAutor.php" method="POST">
-          <fieldset>
-            <legend>Información de autor a borrar.</legend>
-            <table>
-                <tr>
-                    <td align="right">Nombre: </td>
-                    <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-                </tr>
-                <tr>
-                    <td align="right">Apellido Paterno: </td>
-                    <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-                </tr>
-                <tr>
-                    <td align="right">Apellido Materno: </td>
-                    <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-                </tr>
-            </table>
-            <input type="reset" value="Reset">
-            <input type="submit" value="Eliminar">
-          </fieldset>
-        </form>
 
     </body>
 </html>

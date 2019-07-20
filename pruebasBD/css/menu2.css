@@ -1,0 +1,240 @@
+img {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  vertical-align: middle;
+}
+
+#pie {
+  background-color: #345;
+  color: #ddd;
+  height: 80px;
+  padding-top: 15px;
+  position: absolute;
+  line-height: 1rem;
+  font-size: .65rem;
+  width: 100%;
+  bottom: 0px;
+  margin: auto;
+}
+
+#pie a {
+  color: #89a;
+  text-decoration: none;
+}
+
+#pie .contenedorpie {
+  display: inline-block;
+  position: absolute;
+  right: 2rem;
+}
+
+#pie .pienombre {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  padding-right: 7px;
+  padding-bottom: 0px;
+  font-weight: 900;
+  font-size: 1rem;
+//  border-bottom: 2px solid darkorange;
+  margin-right: -3px;
+}
+
+#pie .piedatos {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  border-left: 3px solid darkorange;
+  padding-left: 4px;
+  font-weight: 300;
+  margin: 0;
+}
+
+#encabezado {
+  background-color: #345;
+  height: 120px;
+  line-height: 120px;
+  padding: 0 3rem;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  margin: 0;
+  z-index: 1000;
+}
+
+#encabezado > div#logoizq {
+  height: 100px;
+  width: 120px;
+  display: block;
+  position: absolute;
+  left: 2rem;
+  background-image: url("../images/unam-silver.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+//  transition: all 3s ease;
+}
+
+#encabezado > div#logoizq:hover {
+  background-image: url("../images/unam-gold.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#encabezado > div#logomid {
+  height: 90px;
+  width: 450px;
+  display: block;
+  position: relative;
+  margin: auto;
+  background-image: url("../images/logo-papirhos.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#encabezado > div#logoder {
+  height: 90px;
+  width: 200px;
+  display: block;
+  position: absolute;
+  right: 2rem;
+  background-image: url("../images/im-cropped.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#encabezado > div#logoder:hover {
+  background-image: url("../images/im-cropped-H.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#menuencabezado {
+  background-color: #678;
+//  background-color: #556779;
+  color: #ddd;
+  padding: 0 3rem;
+  position: absolute;
+  font-weight: 300;
+  width: 100%;
+  margin: 0;
+  z-index: 1000;
+}
+
+#menuencabezado.fijo,
+#menuencabezado.sticky {
+  background-color: #345;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 3rem;
+  position: fixed;
+  top: 0px;
+  z-index: 1000;
+}
+
+#menuencabezado a {
+  text-decoration: none;
+  color: #ddd;
+}
+
+#menuencabezado a:hover {
+  text-decoration: none;
+  color: #b4a274;
+}
+
+#menuencabezado.sticky a:hover {
+  text-decoration: none;
+  color: #b4a274;
+}
+
+#menuencabezado.fijo a:hover {
+  text-decoration: none;
+  color: #b4a274;
+}
+
+#menuencabezado > nav {
+  background-color: transparent;
+  display: block;
+  -webkit-flex: 1;
+  flex: 1;
+  transform: 300ms all ease;
+}
+
+#menuencabezado nav > ul {
+  list-style: none;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+#menuencabezado nav > ul > li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+#menuencabezado nav> ul> li .activo {
+color: #234;
+cursor: default;
+}
+
+#menuencabezado nav> ul> li .activo:hover {
+cursor: default;
+}
+
+#menuencabezado.sticky nav> ul> li .activo {
+color: #89a;
+}
+
+
+#menuencabezado.sticky > nav:before {
+  display: block;
+  height: 40px;
+  width: 200px;
+  position: absolute;
+  background-image: url("../images/logo-papirhos.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+#menuencabezado.fijo > nav:before {
+  display: block;
+  height: 40px;
+  width: 200px;
+  position: absolute;
+  background-image: url("../images/logo-papirhos.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}

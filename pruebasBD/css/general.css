@@ -1,0 +1,636 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+  color: #456;
+  -webkit-font-smoothing: antialiased;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background: #816f5e;
+  background-attachment: fixed;
+  background-size: 60px;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  max-height: 100%;
+}
+
+#contenedor {
+  background: #ddd url(../images/fondo9.svg) repeat;
+  background-size: 4px;
+  min-height: 100%;
+  position: relative;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, .5);
+}
+
+#contenido {
+  padding-top: 250px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.texto,
+.texto-marco,
+.texto-marco-sinfondo {
+  display: block;
+  padding: 0;
+  background-color: rgba(0, 0, 0, .05);
+  position: relative;
+  z-index: 0;
+  border-radius: 8px;
+}
+
+.texto-marco {
+  border: 1px solid #345;
+  margin-bottom: 10px;
+  background-color: #89a;
+}
+
+.texto-marco-sinfondo {
+  border: 1px solid #345;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+.texto-marco h1,
+.texto-marco-sinfondo h1 {
+  background-color: #345;
+  color: #ddd;
+  border-bottom: 1px solid orange;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
+  padding: .5rem;
+  margin-bottom: .5rem;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+h2, h3 {
+  font-weight: 400;
+  border-bottom: 1px solid darkorange;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#anuncios {
+  display: block;
+  margin-top: 0;
+/*  padding-top: .5rem;
+  padding-left: 0; */
+  padding: .5rem;
+  font-size: .75rem;
+  font-weight: 300;
+  line-height: .9rem;
+  text-align: justify;
+  position: relative;
+  z-index: 0;
+  border-radius: 5px;
+  background-color: rgba(100,100,100,.1);
+}
+#anuncios.sticky {
+  display: block;
+  position: fixed;
+}
+
+#anuncios h1 {
+/*  color: #234; */
+  display: block;
+  padding-bottom: .5rem;
+  border-bottom: none; 
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  border-bottom: 2px solid darkorange;
+}
+
+h1 {
+  display: block;
+  margin: 20px 0;
+  font-size: 2.5rem;
+  font-weight: 200;
+  color: #456;
+  border-bottom: 2px solid #678;
+}
+
+.lista {
+  color: #678;
+  font-size: 1rem;
+  width: 100%;
+  padding-left: .5rem;
+}
+
+.lista .chbox-1 {
+  padding-bottom: .5rem;
+}
+
+.sublista {
+  padding-left: 1rem;
+  font-size: .8rem;
+  padding-bottom: .5rem;
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: 0px 0px 2px orange;
+}
+
+.dir-bloque {
+  font-size: .8rem;
+  line-height: 1.1rem;
+  padding-bottom: .5rem;
+  color: #456;
+  font-weight: 300;
+}
+
+.barra-dir-contenido {
+  display: block;
+  background-color: rgba(255, 255, 245, .5);
+  background-image: url(../images/fondo9.svg);
+  background-repeat: repeat;
+  background-size: 5px;
+  border-left: 2px solid orange;
+  padding: 3px;
+  margin-right: .5rem;
+  border-radius: 6px;
+  z-index: 0;
+}
+
+.barra-dir-simbolo,
+.barra-dir-simbolo-grande {
+  display: block;
+  position: relative;
+  text-align: right;
+  padding-top: 3px;
+  margin-top: 0;
+  height: auto;
+  color: #678;
+  z-index: 1;
+}
+
+.barra-dir-simbolo-grande {
+  font-size: 1.1rem;
+}
+
+a {
+  color: #883b29;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a28b51;
+  text-decoration: none;
+}
+
+.mapa-google {
+  height: 400px;
+  border-radius: 8px;
+  margin: .5rem;
+}
+
+.caja-texto,
+.caja-limpia,
+.caja-limpia-izq {
+  margin-top: 0;
+  margin: .5rem;
+  padding: 1.5rem;
+  font-size: .9rem;
+  font-weight: 300;
+  text-align: justify;
+  z-index: 2;
+}
+
+.caja-texto {
+  background-image: url(../images/fondo9.svg);
+  background-repeat: repeat;
+  background-size: 5px;
+  border-radius: 6px;
+}
+
+.caja-texto,
+.caja-limpia {
+  line-height: 1.2rem;
+}
+
+.caja-limpia {
+  background: transparent;
+  border-right: 2px solid rgba(0, 0, 0, .05);
+}
+
+.caja-limpia-izq {
+  background: transparent;
+  border-left: 2px solid rgba(0, 0, 0, .05);
+}
+
+.libro-datos {
+  display: inline-block;
+  position: relative;
+  font-size: .85rem;
+  font-weight: 300;
+  margin-left: 150px;
+}
+
+.libro {
+  display: block;
+  position: relative;
+  min-height: 160px;
+  z-index: 0;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  margin-bottom: 5px;
+}
+
+.libro-datos {
+  text-align: left;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.libro-portada {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.libro-portada img {
+  height: 150px;
+}
+
+.caja-texto p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.button {
+  border-top: 1px solid #89a;
+  background: #89a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#345), to(#89a));
+  background: -webkit-linear-gradient(top, #345, #89a);
+  background: -moz-linear-gradient(top, #345, #89a);
+  background: -ms-linear-gradient(top, #345, #89a);
+  background: -o-linear-gradient(top, #345, #89a);
+  padding: 5px 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+  color: white;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.button:hover {
+  border-top-color: #234;
+  background: #234;
+  color: #E1BF71;
+}
+
+.button:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
+.derecha {
+  display: block;
+  text-align: right;
+  margin-right: .5rem;
+}
+
+.titulo {
+  font-size: 1.5rem;
+}
+
+.autores,
+.autores-tul {
+  font-size: 1rem;
+  padding-bottom: .2rem;
+}
+.autores {
+  border-bottom: 1px solid #456;
+  margin-bottom: .5rem;
+}
+
+.compiladores,
+.compiladores-tul {
+  font-size: 0.9rem;
+/*  padding-bottom: .2rem; */
+}
+.compiladores {
+/*  border-bottom: 1px solid #456; */
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+}
+
+.coleccion,
+.serie,
+.numero,
+.isbn,
+.extra-info,
+.precio-lista,
+.precio-descuento,
+.ejemplares,
+.agotado,
+.notas {
+  font-size: .8rem;
+}
+.isbn{
+  border-bottom: 1px solid #abc;
+  padding-bottom: .2rem;
+  margin-bottom: 0.5rem;
+}
+
+.ejemplares,
+.notas {
+  padding-bottom: .5rem;
+}
+
+.compiladores::before {
+  font-weight: 600;
+  content: "Compiladores / editores: ";
+}
+
+.notas::before {
+  font-weight: 600;
+  content: "Nota: ";
+}
+
+.coleccion::before {
+  font-weight: 600;
+  content: "ColecciÃ³n: ";
+}
+
+.serie::before {
+  font-weight: 600;
+  content: "Serie: ";
+}
+
+.numero::before {
+  font-weight: 600;
+  content: "NÃºmero: ";
+}
+
+.isbn::before {
+  font-weight: 600;
+  font-variant: small-caps;
+  content: "isbn: ";
+}
+
+.ejemplares::before {
+  font-weight: 600;
+  content: "Ejemplares disponibles: ";
+}
+
+.precio-lista::before {
+  font-weight: 600;
+  content: "Precio de lista: ";
+}
+
+.precio-descuento::before {
+  font-weight: 600;
+  content: "Precio descuento: ";
+}
+
+.agotado::before {
+  font-weight: 600;
+  font-variant: small-caps;
+  color: darkred;
+ /* content: "Agotado"; */
+  content: ""; 
+}
+
+#output {
+  display: inline-block;
+  position: fixed;
+  font-family: monospace;
+  font-size: .75rem;
+  line-height: .95rem;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 1px solid #345;
+  background-color: #eee;
+  border-radius: 6px;
+  box-shadow: 5px 5px 8px #345;
+  z-index: 1000;
+}
+
+#output .encabezado {
+  width: 100%;
+  height: 2rem;
+  position: absolute;
+  top: 0;
+  padding: .5rem;
+  background-color: #789;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 2px solid #345;
+  vertical-align: middle;
+}
+
+#output .encabezado .titulo {
+  left: 2rem;
+  color: #eee;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: .8rem;
+  font-weight: 300;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+#output .ficha {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+}
+
+#output.nodisplay {
+  display: none;
+}
+
+.botonBibTeX {
+  float: right;
+}
+
+.botonCerrarImg,
+.botonGuardarImg {
+  height: 1.2rem;
+  width: 1.2rem;
+  display: inline-block;
+  position: absolute;
+}
+
+.botonCerrarImg {
+  background-image: url("../images/botonCerrar-sinfondo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: .4rem;
+  right: .5rem;
+}
+
+.botonGuardarImg {
+  background-image: url("../images/botonGuardar-sinfondo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: .4rem;
+  right: 2rem;
+}
+
+.botonCerrarImg:hover {
+  background-image: url("../images/botonCerrar-sinfondo-H.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: .4rem;
+  right: .5rem;
+  cursor: pointer;
+}
+
+.botonGuardarImg:hover {
+  background-image: url("../images/botonGuardar-sinfondo-H.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: .4rem;
+  right: 2rem;
+  cursor: pointer;
+  transition: all .8s ease;
+}
+
+.barratulicosaedro,
+.barratultextos {
+  position: relative;
+  width: 100%;
+}
+.barratulicosaedro h1,
+.barratultextos h1{
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-radius: 0;
+}
+.barratulicosaedro h1 {
+/*  background: #883000;
+  background-color: rgb(247,145,64); */
+  background: linear-gradient(to right, rgb(247,145,64) 0%, #883000 100%);
+}
+.barratultextos h1 {
+/*  background: #A0CF67;
+  background-color: rgb(3,43,101); */
+  background: linear-gradient(to right, rgb(3,43,101) 0%, #A0CF67 100%);
+}
+
+/* Para las fichas de TUL */
+.libro-datos-tul {
+  display: inline-block;
+  position: relative;
+  font-size: .85rem;
+  font-weight: 300;
+  margin-left: 80px;
+}
+
+.libro-tul {
+  display: block;
+  position: relative;
+  min-height: 90px;
+  z-index: 0;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  margin-bottom: 5px;
+}
+
+.libro-datos-tul {
+  text-align: left;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.libro-portada-tul {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.libro-portada-tul img {
+  height: 80px;
+}
+
+.caja-limpia ol, .caja-limpia ul {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.caja-limpia ol, .caja-limpia ul > li{
+  margin-left: 1rem;
+}
+
+.noticia{
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(255,255,255,.3);
+}
+
+.noticia h3{
+  border-bottom: 1px solid darkorange;
+  font-size: .9rem;
+  font-weight: 600;
+  padding: 0.2rem;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.noticia h4{
+  display: block;
+  color: darkred;
+  text-align: right;
+  font-size: .6rem;
+  padding: 0;
+  margin-bottom: 0.2rem;
+}
+
+.contenido-noticia{
+  font-size: .8rem;
+  margin-bottom: 1.5rem;
+  padding-top: .3rem;
+}
+
+.botonesfichas{
+  display: block;
+  padding-top: .5rem;
+}
+
+.construccion{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: darkorange;
+}

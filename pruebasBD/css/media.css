@@ -1,0 +1,526 @@
+@media all {
+  #menuencabezado {
+    border-top: solid 1px orange;
+  }
+
+  #menuencabezado.sticky {
+    border-top: none;
+  }
+}
+
+@media all and (min-width: 1100px) {
+  body,
+  #menuencabezado,
+  #menuencabezado.sticky,
+  #indice-titulo,
+  #indice-titulo.sticky {
+    width: 1090px;
+    margin: auto;
+  }
+  #menuencabezado {
+    -webkit-transition: background-color 0.4s linear;
+    transition: background-color 0.4s linear;
+  }
+
+  #indice-fondo {
+    width: 1090px;
+  }
+  #contenido {
+    padding-top: 167px;
+  }
+  #encabezado {
+    height: 120px;
+    line-height: 120px;
+  }
+  #encabezado > div#logoizq {
+    height: 90px;
+    width: 90px;
+    /*   -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease; */
+  }
+  #encabezado > div#logomid {
+    height: 90px;
+    width: 360px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #encabezado > div#logoder {
+    height: 75px;
+    width: 150px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #menuencabezado {
+    height: 47px;
+    line-height: 47px;
+    top: 120px;
+  }
+  .menu-tul {
+    width: 259px;
+  }
+  #anuncios,
+  #anuncios.sticky{
+    width: 250px;
+    max-height: 80%;
+    overflow: scroll;
+  }
+  #anuncios.sticky{
+    top: 75px; 
+  }
+}
+
+@media all and (min-width: 820px) and (max-width: 1100px) {
+  body,
+  #header,
+  #menuencabezado,
+  #menuencabezado.sticky,
+  #indice-titulo,
+  #indice-titulo.sticky {
+    width: 810px;
+    margin: auto;
+  }
+
+  #menuencabezado {
+    -webkit-transition: background-color 0.4s linear;
+    transition: background-color 0.4s linear;
+  }
+
+  #indice-fondo {
+    width: 810px;
+  }
+  #contenido {
+    padding-top: 145px;
+  }
+  #encabezado {
+    height: 105px;
+    line-height: 105px;
+  }
+  #encabezado > div#logoizq {
+    height: 80px;
+    width: 80px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #encabezado > div#logomid {
+    height: 80px;
+    width: 320px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #encabezado > div#logoder {
+    height: 63px;
+    width: 126px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #menuencabezado {
+    height: 40px;
+    line-height: 40px;
+    top: 105px;
+  }
+
+#anuncios,
+  #anuncios.sticky{
+    width: 190px;
+  }
+  #anuncios.sticky{
+    top: 55px; 
+  }
+
+  .menu-tul {
+    width: 192px;
+  }
+}
+
+@media all and (min-width: 641px) and (max-width: 820px) {
+  body,
+  #header,
+  #menuencabezado,
+  #menuencabezado.sticky,
+  #indice-titulo,
+  #indice-titulo.sticky {
+    width: 640px;
+    margin: auto;
+  }
+
+  #menuencabezado {
+    -webkit-transition: background-color 0.4s linear;
+    transition: background-color 0.4s linear;
+  }
+
+    #indice-fondo {
+    width: 640px;
+  }
+
+  #contenido {
+    padding-top: 110px;
+  }
+  #encabezado {
+    height: 80px;
+    line-height: 80px;
+  }
+  #encabezado > div#logoizq {
+    height: 60px;
+    width: 60px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #encabezado > div#logomid {
+    height: 60px;
+    width: 240px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #encabezado > div#logoder {
+    height: 40px;
+    width: 100px;
+    //    -webkit-transition: all 0.4s ease;
+    //    transition: all 0.4s ease;
+  }
+  #menuencabezado {
+    height: 30px;
+    line-height: 30px;
+    top: 80px;
+  }
+  .menu-tul {
+    width: 152px;
+  }
+}
+
+
+/* ========== Para tablets ============ */
+/* == Esto es: 1024 x 768 (o retina razÃ³n 4:3 o 3:4) y sensibles a orientaciÃ³n == */
+/* ============================ */
+/* OrientaciÃ³n horizontal (4:3) */
+/* ---------------------------- */
+@media screen and (max-device-width: 1024px) and (orientation: landscape) {
+  body,
+  #menuencabezado,
+  #menuencabezado.sticky,
+  #indice-titulo,
+  #indice-titulo.sticky {
+    width: 1000px;
+    margin: auto;
+  }
+  #indice-fondo {
+    width: 1000px;
+  }
+
+  #contenido {
+    padding-top: 70px;
+  }
+
+  #encabezado {
+    display: none;
+  }
+
+  #menuencabezado {
+    border-top: none;
+    background-color: #345;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 3rem;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+  }
+
+#menuencabezado nav> ul> li .activo {
+color: #89a;
+}
+
+#menuencabezado > nav:before,
+#menuencabezado.sticky > nav:before {
+  display: block;
+  height: 36px;
+  width: 180px;
+  position: absolute;
+  background-image: url("../images/logo-papirhos.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+}
+
+  a:hover {
+    color: #a54;
+    text-decoration: none;
+  }
+
+  .menu-tul {
+    width: 238px; 
+  }
+ 
+  #pie {
+    height: 90px;
+    padding-top: 20px;
+  }
+
+  #pie > div#logoizq {
+    height: 70px;
+    width: 96px;
+    display: block;
+    position: absolute;
+    left: 2rem;
+    background-image: url("../images/unam-silver.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #pie > div#logoder {
+    height: 50px;
+    width: 200px;
+    display: block;
+    position: absolute;
+    left: 130px;
+    background-image: url("../images/im-cropped.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #anuncios {
+    display: block;
+    top: 80;
+    width: 14rem;
+    padding: .5rem;
+    font-size: .75rem;
+    font-weight: 300;
+    line-height: .9rem;
+    text-align: justify;
+    position: fixed;
+    z-index: 0;
+    border-radius: 5px;
+    background-color: rgba(100,100,100,.1);
+  }
+
+  #anuncios.sticky {
+    display: block;
+    top: 80;
+    width: 14rem;
+    padding: .5rem;
+    font-size: .75rem;
+    font-weight: 300;
+    line-height: .9rem;
+    text-align: justify;
+    position: fixed;
+    z-index: 0;
+    border-radius: 5px;
+    background-color: rgba(100,100,100,.1);
+  }
+
+  #anuncios h1 {
+    display: block;
+    padding-bottom: .5rem;
+    border-bottom: none; 
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 2px solid darkorange;
+  }
+}
+
+/* ------------------------------ */
+/* Termina OrientaciÃ³n horizontal */
+/* ============================== */
+
+/* ============================ */
+/* OrientaciÃ³n vertical (3:4)   */
+/* ---------------------------- */
+
+@media screen and (max-device-width: 768px) and (orientation: portrait) {
+  body,
+  #menuencabezado,
+  #menuencabezado.sticky {
+    width: 750px;
+    margin: auto;
+  }
+  #contenido {
+    padding-top: 70px;
+  }
+  #encabezado {
+    display: none;
+  }
+
+  #menuencabezado {
+    border-top: none;
+    background-color: #345;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 3rem;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+  }
+
+#menuencabezado nav> ul> li .activo {
+  color: #89a;
+}
+
+
+#menuencabezado > nav:before,
+#menuencabezado.sticky > nav:before {
+  display: block;
+  height: 36px;
+  width: 180px;
+  position: absolute;
+  background-image: url("../images/logo-papirhos.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+}
+
+  a:hover {
+    color: #a54;
+    text-decoration: none;
+  }
+
+  .menu-tul {
+    width: 178px;
+  }
+
+  #pie {
+    height: 90px;
+    padding-top: 20px;
+  }
+
+  #pie > div#logoizq {
+    height: 70px;
+    width: 96px;
+    display: block;
+    position: absolute;
+    left: 2rem;
+    background-image: url("../images/unam-silver.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  #pie > div#logoder {
+    height: 50px;
+    width: 200px;
+    display: block;
+    position: absolute;
+    left: 130px;
+    background-image: url("../images/im-cropped.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  #anuncios {
+    display: block;
+    top: 80;
+    width: 10.5rem;
+    padding: .5rem;
+    font-size: .75rem;
+    font-weight: 300;
+    line-height: .9rem;
+    text-align: justify;
+    position: fixed;
+    z-index: 0;
+    border-radius: 5px;
+    background-color: rgba(100,100,100,.1);
+  }
+
+  #anuncios.sticky {
+    display: block;
+    top: 80;
+    width: 10.5rem;
+    padding: .5rem;
+    font-size: .75rem;
+    font-weight: 300;
+    line-height: .9rem;
+    text-align: justify;
+    position: fixed;
+    z-index: 0;
+    border-radius: 5px;
+    background-color: rgba(100,100,100,.1);
+  }
+
+  #anuncios h1 {
+    display: block;
+    padding-bottom: .5rem;
+    border-bottom: none; 
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 2px solid darkorange;
+  }
+}
+
+/* ------------------------------ */
+/* Termina OrientaciÃ³n vertical   */
+/* ============================== */
+/* ------------------------------ */
+/* Termina tablets                */
+/* ============================== */
+
+
+/* Para celulares */
+
+@media only screen and (max-width: 640px) {
+  body,
+  #menuencabezado,
+  #menuencabezado.sticky {
+    width: 640px;
+    margin: auto;
+  }
+  #contenido {
+    padding-top: 90px;
+  }
+  #encabezado {
+    height: 70px;
+    line-height: 70px;
+  }
+  #encabezado > div#logoizq {
+    height: 40px;
+    width: 40px;
+  }
+  #encabezado > div#logomid {
+    height: 40px;
+    width: 160px;
+  }
+  #encabezado > div#logoder {
+    height: 30px;
+    width: 60px;
+  }
+  #menuencabezado {
+    height: 30px;
+    line-height: 33px;
+    top: 70px;
+  }
+  .column-1,
+  .column-2,
+  .column-3,
+  .column-4,
+  .column-5,
+  .column-6,
+  .column-7,
+  .column-8,
+  .column-9,
+  .column-10,
+  .column-11,
+  .column-12 {
+    width: auto;
+    float: none;
+  }
+  .column + .column {
+    margin-left: 0;
+  }
+}

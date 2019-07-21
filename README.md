@@ -9,6 +9,7 @@ estarán disponibles (creo) pero que aún no he pensado cómo hacerlas o no me h
 - Ventas (buena interfaz)
 - Inventarios
 - Log in
+
 Para lo anterior aún falta pensar bien como hacer las tablas que guardarán la información (inventarios, ventas)
 y definir exactamente las tablas existentes.
 La base de datos que uso para esta página es muy parecida a la dada pero no es la misma, cambié los id de libros y autores

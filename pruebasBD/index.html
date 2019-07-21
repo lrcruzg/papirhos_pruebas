@@ -7,7 +7,38 @@
         <link rel="stylesheet" type="text/css" href="css/general.css">
         <link rel="stylesheet" type="text/css" href="css/media.css">
         <link rel="stylesheet" type="text/css" href="css/grid.css">
-        <meta name="viewport" content="initial-scale=1"></head>
+        <meta name="viewport" content="initial-scale=1">
+        <style type="text/css">
+            .botonn {
+              border: none;
+              color: white;
+              padding: 4px 15px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              margin: 4px 2px;
+              cursor: pointer;
+              opacity: 1;
+            }
+            .button1 {
+              opacity: 1;
+              color: #456; 
+              border: 1px solid #456;
+            }
+            .button1:hover {
+              background-color: #456;
+              color: white;
+            }
+            input[type=text] {
+              /*width: 100%;*/
+              padding: 6px 4px;
+              margin: 2px 0;
+              box-sizing: border-box;
+              border: none;
+              /*border-bottom: 2px solid darkorange;*/
+              background:rgba(0,0,0,0.1);
+            }
+        </style>
     </head> 
     <body>
         <div id="contenedor">
@@ -41,8 +72,8 @@
                 <h2>Ventas</h2>
                 <form action="Ventas.php" method="POST">
                     <fieldset>            
-                        Buscar libro:<input type="search" name="q" placeholder="Título, Autor">
-                        <input type="submit" value="Buscar">
+                        Buscar libro:<input type="text" name="q" placeholder="Título, Autor">
+                        <input type="submit" class="botonn button1" value="Buscar">
                     </fieldset>
                 </form>
 
@@ -74,8 +105,8 @@
                         </tr>
 
                     </table>
-                    <input type="reset" value="Reset">
-                    <input type="submit" value="Agregar" />
+                    <input type="reset" class="botonn button1" value="Reset">
+                    <input type="submit" class="botonn button1" value="Agregar" />
                   </fieldset>
                 </form>
 
@@ -99,8 +130,8 @@
                             <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
                         </tr>
                     </table>
-                    <input type="reset" value="Reset">
-                    <input type="submit" value="Agregar">
+                    <input class="botonn button1" type="reset" value="Reset">
+                    <input class="botonn button1" type="submit" value="Agregar">
                   </fieldset>
                 </form>
                 
@@ -124,8 +155,8 @@
                             <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
                         </tr>
                     </table>
-                    <input type="reset" value="Reset">
-                    <input type="submit" value="Eliminar">
+                    <input type="reset" class="botonn button1" value="Reset">
+                    <input type="submit" class="botonn button1" value="Eliminar">
                   </fieldset>
                 </form>
 

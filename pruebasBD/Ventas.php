@@ -48,15 +48,16 @@ if (!$query) {
         table {
           font-family: arial, sans-serif;
           border-collapse: collapse;
+          width: 50%;
         }
 
         td, th {
-          border: 1px solid #dddddd;
+          /*border: 1px solid black;*/
           padding: 3px;
         }
 
         tr:nth-child(even) {
-          background-color: #dddddd;
+          background-color: #f2f2f2;
         }
     </style>
 </head>

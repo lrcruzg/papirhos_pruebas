@@ -39,12 +39,12 @@ if (!$query) {
         }
 
         td, th {
-          border: 1px solid #dddddd;
+          /*border: 1px solid black;*/
           padding: 3px;
         }
 
         tr:nth-child(even) {
-          background-color: #dddddd;
+          background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -52,12 +52,12 @@ if (!$query) {
 	<div id="contenedor">
 
 		<div id="encabezado">
-          <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
-          </div>
-          <div id="logomid">
-          </div>
-          <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
-          </div>
+			<div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
+			</div>
+			<div id="logomid">
+			</div>
+			<div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+			</div>
         </div>
 
         <div id="menuencabezado">
@@ -71,8 +71,7 @@ if (!$query) {
                     </li>
                     <li>
                         <a href="/PruebasBD/MuestraLibros.php">Libros</a>
-                    </li>
-                    
+                    </li>        
                 </ul>
             </nav>
         </div>
@@ -93,22 +92,22 @@ if (!$query) {
 				</thead>
 				<tbody>
 				<?php
-					while ($row = mysqli_fetch_array($query)) {
-						echo '<tr>
-								<td align="center">'.$row['id_libros'].'</td>
-			                    <td>
-			                    	<a href="DatosAutor.php?autor='.$row['id_libros'].'">'.
-			                    		utf8_encode($row['titulo']).'
-			                    	</a>
-			                    </td>
-			                    <td>'.
-			                    	utf8_encode($row['coleccion']).'
-			                    </td>
-			                    <td>'.
-			                    	utf8_encode($row['serie']).
-			                    '</td>
-							</tr>';
-					}
+				while ($row = mysqli_fetch_array($query)) {
+					echo '<tr>
+							<td align="center">'.$row['id_libros'].'</td>
+		                    <td>
+		                    	<a href="DatosLibro.php?libro='.$row['id_libros'].'&titulo='.utf8_encode($row['titulo']).'">'.
+		                    		utf8_encode($row['titulo']).'
+		                    	</a>
+		                    </td>
+		                    <td>'.
+		                    	utf8_encode($row['coleccion']).'
+		                    </td>
+		                    <td>'.
+		                    	utf8_encode($row['serie']).
+		                    '</td>
+						</tr>';
+				}
 				?>
 				</tbody>		
 			</table>

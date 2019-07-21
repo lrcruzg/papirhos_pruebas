@@ -1,6 +1,6 @@
 <?php
-$id = $_GET['autor'];
-$name = $_GET['nombre'];
+$id = $_GET['libro'];
+$lib_nombre = $_GET['titulo'];
 
 $servername = "localhost";
 $username = "root";
@@ -15,10 +15,10 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-$sql = "SELECT titulo, coleccion, serie FROM libros_autores_aux
-		JOIN libros_aux
-			ON libros_aux.id_libros = libros_autores_aux.id_libros
-		WHERE id_autores = '$id'";
+$sql = "SELECT autores_aux.id_autores, nombre, apellido_paterno, apellido_materno FROM libros_autores_aux
+		JOIN autores_aux
+			ON autores_aux.id_autores = libros_autores_aux.id_autores
+		WHERE autores_aux.id_autores = '$id'";
 
 $query = mysqli_query($conn, $sql);
 
@@ -30,17 +30,18 @@ if (!$query) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Libros por Autor</title>
+	<title>Autores por libro</title>
 	<link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
 	<link rel="stylesheet" type="text/css" href="css/menu2.css">
-    <link rel="stylesheet" type="text/css" href="css/general.css">
-    <link rel="stylesheet" type="text/css" href="css/media.css">
-    <link rel="stylesheet" type="text/css" href="css/grid.css">
-    <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/general.css">
+  <link rel="stylesheet" type="text/css" href="css/media.css">
+  <link rel="stylesheet" type="text/css" href="css/grid.css">
+  <meta name="viewport" content="initial-scale=1">
 	<style>
         table {
           font-family: arial, sans-serif;
           border-collapse: collapse;
+          width: 50%;
         }
 
         td, th {
@@ -55,9 +56,9 @@ if (!$query) {
 </head>
 <body>
 
-	<div id="contenedor">
+  <div id="contenedor">
 
-		<div id="encabezado">
+  	<div id="encabezado">
           <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
           </div>
           <div id="logomid">
@@ -84,30 +85,31 @@ if (!$query) {
         </div>
 
         <div id="contenido">
-        	<h2>Libros escritos por <?php echo $name; ?></h2>
-			<table align="center">
-				<thead>
-					<tr>
-						<th>Título</th>
-						<th>Coleccíon</th>
-						<th>Serie</th>
-					</tr>
-				</thead>
-				<tbody>
-				<?php
-				while ($row = mysqli_fetch_array($query)) {
-					echo '<tr>
-							<td>'.utf8_encode($row['titulo']).'</td>
-		                    <td>'.utf8_encode($row['coleccion']).'</td>
-		                    <td>'.utf8_encode($row['serie']).'</td>
-						</tr>';
-				}
-				?>
-				</tbody>
-			</table>
+        	<h2>Autores del libro <?php echo $lib_nombre; ?></h2>
+  		<table align="center">
+  			<thead>
+  				<tr>
+  					<th>Nombre</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  			<?php
+  				while ($row = mysqli_fetch_array($query)) {
+            $name = utf8_encode($row['nombre']).' '.
+                        utf8_encode($row['apellido_paterno']).' '.
+                        utf8_encode($row['apellido_materno']);
+            echo '<tr>
+                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'&nombre='.$name.'">'.
+                    $name.
+                    '</a></td>
+                  </tr>';
+  				}
+  			?>
+  			</tbody>
+  		</table>
 
-		</div>
-	</div>
+  	</div>
+  </div>
 	
 	
 </body>

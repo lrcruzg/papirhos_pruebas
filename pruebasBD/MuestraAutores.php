@@ -36,15 +36,16 @@ if (!$query) {
         table {
           font-family: arial, sans-serif;
           border-collapse: collapse;
+          width: 50%;
         }
 
         td, th {
-          border: 1px solid #dddddd;
+          /*border: 1px solid black;*/
           padding: 3px;
         }
 
         tr:nth-child(even) {
-          background-color: #dddddd;
+          background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -81,7 +82,7 @@ if (!$query) {
 
 			<h1 align="center">Tabla de Autores</h1>
 
-			<table class="data-table" align="center">
+			<table>
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -90,16 +91,17 @@ if (!$query) {
 				</thead>
 				<tbody>
 				<?php
-					while ($row = mysqli_fetch_array($query)) {
-						echo '<tr>
-								<td align="center">'.$row['id_autores'].'</td>
-			                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'">'.
-			                    utf8_encode($row['nombre']).' '.
-			                    utf8_encode($row['apellido_paterno']).' '.
-			                    utf8_encode($row['apellido_materno']).
-			                    '</a></td>
-							</tr>';
-					}
+				while ($row = mysqli_fetch_array($query)) {
+					$name = utf8_encode($row['nombre']).' '.
+		                    utf8_encode($row['apellido_paterno']).' '.
+		                    utf8_encode($row['apellido_materno']);
+					echo '<tr>
+							<td align="center">'.$row['id_autores'].'</td>
+		                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'&nombre='.$name.'">'.
+		                    $name.
+		                    '</a></td>
+						</tr>';
+				}
 				?>
 				</tbody>
 				

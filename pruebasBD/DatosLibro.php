@@ -15,10 +15,7 @@ if ($conn->connect_error) {
     die("Conexion fallida: " . $conn->connect_error);
 }
 
-$sql = "SELECT autores_aux.id_autores, nombre, apellido_paterno, apellido_materno FROM libros_autores_aux
-		JOIN autores_aux
-			ON autores_aux.id_autores = libros_autores_aux.id_autores
-		WHERE autores_aux.id_autores = '$id'";
+$sql = "SELECT autores_aux.id_autores, nombre, apellido_paterno, apellido_materno FROM autores_aux JOIN libros_autores_aux ON autores_aux.id_autores = libros_autores_aux.id_autores WHERE id_libros = '$id'";
 
 $query = mysqli_query($conn, $sql);
 

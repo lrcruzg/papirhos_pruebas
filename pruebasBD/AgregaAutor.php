@@ -14,23 +14,13 @@ function test_input($data) {
     return $data;
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pruebasBD";
+// crea la conexión a la db
+require_once("db_connect.php");
 
 $message = "";
 
-// Crea la conexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
 // IMPORTANTE, los acentos no funcionan sin esto
 $acentos = $conn->query("SET NAMES 'utf8'");
-
-// Revisa la conexion
-if ($conn->connect_error) {
-    die("Conexion fallida: " . $conn->connect_error);
-}
 
 // verifica si hay otro autor en la base con el mismo nombre y apellidos y los cuenta
 $duplicado = "SELECT COUNT(nombre) AS num FROM autores_aux
@@ -64,11 +54,11 @@ $conn->close();
 ?>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Papirhos - Modificar base de datos</title>
-        <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Papirhos - Modificar base de datos</title>
+    <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+</head>
 <body>
     <h1>Agregar Autor</h1>
     <nav>

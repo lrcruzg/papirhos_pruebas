@@ -30,13 +30,17 @@
               color: white;
             }
             input[type=text] {
-              /*width: 100%;*/
               padding: 6px 4px;
               margin: 2px 0;
               box-sizing: border-box;
               border: none;
-              /*border-bottom: 2px solid darkorange;*/
               background:rgba(0,0,0,0.1);
+            }
+            p.busqueda {
+                padding-left: 5%;
+            }
+            table {
+                padding-left: 5%;
             }
         </style>
     </head> 
@@ -70,10 +74,12 @@
             </div>
             <div id="contenido">
                 <h2>Ventas</h2>
-                <form action="Ventas.php" method="POST">
+                <form action="Ventas.php" method="GET">
                     <fieldset>            
-                        Buscar libro:<input type="text" name="q" placeholder="Título, Autor">
-                        <input type="submit" class="botonn button1" value="Buscar">
+                        <p class="busqueda">
+                            Buscar libro:<input type="text" name="q" placeholder="Título, Autor">
+                            <input type="submit" class="botonn button1" value="Buscar">
+                        </p>
                     </fieldset>
                 </form>
 

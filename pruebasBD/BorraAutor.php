@@ -14,21 +14,11 @@ function test_input($data) {
     return $data;
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pruebasBD";
-
-// Crea la conexion
-$conn = new mysqli($servername, $username, $password, $dbname);
+// crea la conexión a la db
+require_once("db_connect.php");
 
 // IMPORTANTE, los acentos no funcionan sin esto
 $acentos = $conn->query("SET NAMES 'utf8'");
-
-// Revisa la conexion
-if ($conn->connect_error) {
-    die("Conexion fallida: " . $conn->connect_error);
-}
 
 // verifica si existe en la base el autor a borrar
 $existe = "SELECT COUNT(nombre) AS num FROM autores_aux
@@ -76,7 +66,7 @@ $conn->close();
         <a href="/PruebasBD/MuestraAutores.php">Autores</a> |
         <a href="/PruebasBD/MuestraLibros.php">Libros</a> |
     </nav>
-    
+
     <?php
     echo "<h2>$message</h2>";
     ?>

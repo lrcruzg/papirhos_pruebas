@@ -2,18 +2,8 @@
 $id = $_GET['libro'];
 $lib_nombre = $_GET['titulo'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pruebasBD";
-
-// Crea la conexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Revisa la conexion
-if ($conn->connect_error) {
-    die("Conexion fallida: " . $conn->connect_error);
-}
+// crea la conexión a la db
+require_once("db_connect.php");
 
 $sql = "SELECT autores_aux.id_autores, nombre, apellido_paterno, apellido_materno FROM autores_aux JOIN libros_autores_aux ON autores_aux.id_autores = libros_autores_aux.id_autores WHERE id_libros = '$id'";
 

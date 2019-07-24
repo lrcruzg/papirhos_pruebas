@@ -1,16 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pruebasBD";
-
-// Crea la conexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Revisa la conexion
-if ($conn->connect_error) {
-    die("Conexion fallida: " . $conn->connect_error);
-}
+// crea la conexión a la db
+require_once("db_connect.php");
 
 $sql = "SELECT * FROM libros_aux ORDER BY id_libros ASC";
 

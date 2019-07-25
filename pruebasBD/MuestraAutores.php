@@ -63,7 +63,9 @@ if (!$query) {
                     <li>
                         <a href="/PruebasBD/MuestraLibros.php">Libros</a>
                     </li>
-                    
+                    <li>
+                        <a href="/PruebasBD/Ventas.php">Ventas</a>
+                    </li>
                 </ul>
             </nav>
         </div>

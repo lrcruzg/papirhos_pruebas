@@ -43,60 +43,62 @@ if (!$query) {
 </head>
 <body>
 
-  <div id="contenedor">
+<div id="contenedor">
 
-  	<div id="encabezado">
-          <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
-          </div>
-          <div id="logomid">
-          </div>
-          <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
-          </div>
+	<div id="encabezado">
+        <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
         </div>
-
-        <div id="menuencabezado">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/PruebasBD/index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraAutores.php">Autores</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraLibros.php">Libros</a>
-                    </li>
-                    
-                </ul>
-            </nav>
+        <div id="logomid">
         </div>
+        <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+        </div>
+    </div>
 
-        <div id="contenido">
-        	<h2>Autores del libro <?php echo $lib_nombre; ?></h2>
-  		<table align="center">
-  			<thead>
-  				<tr>
-  					<th>Nombre</th>
-  				</tr>
-  			</thead>
-  			<tbody>
-  			<?php
-  				while ($row = mysqli_fetch_array($query)) {
-            $name = utf8_encode($row['nombre']).' '.
-                        utf8_encode($row['apellido_paterno']).' '.
-                        utf8_encode($row['apellido_materno']);
-            echo '<tr>
-                    <td><a href="DatosAutor.php?autor='.$row['id_autores'].'&nombre='.$name.'">'.
-                    $name.
-                    '</a></td>
-                  </tr>';
-  				}
-  			?>
-  			</tbody>
-  		</table>
+    <div id="menuencabezado">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/PruebasBD/index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="/PruebasBD/MuestraAutores.php">Autores</a>
+                </li>
+                <li>
+                    <a href="/PruebasBD/MuestraLibros.php">Libros</a>
+                </li>
+                <li>
+                    <a href="/PruebasBD/Ventas.php">Ventas</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-  	</div>
-  </div>
+    <div id="contenido">
+    	<h2>Autores del libro <?php echo $lib_nombre; ?></h2>
+		<table align="center">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+				while ($row = mysqli_fetch_array($query)) {
+        $name = utf8_encode($row['nombre']).' '.
+                    utf8_encode($row['apellido_paterno']).' '.
+                    utf8_encode($row['apellido_materno']);
+        echo '<tr>
+                <td><a href="DatosAutor.php?autor='.$row['id_autores'].'&nombre='.$name.'">'.
+                $name.
+                '</a></td>
+              </tr>';
+				}
+			?>
+			</tbody>
+		</table>
+
+	</div>
+</div>
 	
 	
 </body>

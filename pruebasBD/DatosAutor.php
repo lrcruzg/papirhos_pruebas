@@ -48,12 +48,12 @@ if (!$query) {
 	<div id="contenedor">
 
 		<div id="encabezado">
-          <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
-          </div>
-          <div id="logomid">
-          </div>
-          <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
-          </div>
+            <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
+            </div>
+            <div id="logomid">
+            </div>
+            <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
+            </div>
         </div>
 
         <div id="menuencabezado">
@@ -68,7 +68,9 @@ if (!$query) {
                     <li>
                         <a href="/PruebasBD/MuestraLibros.php">Libros</a>
                     </li>
-                    
+                    <li>
+                        <a href="/PruebasBD/Ventas.php">Ventas</a>
+                    </li>
                 </ul>
             </nav>
         </div>

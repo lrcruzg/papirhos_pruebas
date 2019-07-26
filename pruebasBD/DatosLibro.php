@@ -20,10 +20,11 @@ if (!$query) {
 	<title>Autores por libro</title>
 	<link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
 	<link rel="stylesheet" type="text/css" href="css/menu2.css">
-  <link rel="stylesheet" type="text/css" href="css/general.css">
-  <link rel="stylesheet" type="text/css" href="css/media.css">
-  <link rel="stylesheet" type="text/css" href="css/grid.css">
-  <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <meta name="viewport" content="initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
         table {
           font-family: arial, sans-serif;
@@ -54,24 +55,12 @@ if (!$query) {
         </div>
     </div>
 
-    <div id="menuencabezado">
-        <nav>
-            <ul>
-                <li>
-                    <a href="/PruebasBD/index.html">Inicio</a>
-                </li>
-                <li>
-                    <a href="/PruebasBD/MuestraAutores.php">Autores</a>
-                </li>
-                <li>
-                    <a href="/PruebasBD/MuestraLibros.php">Libros</a>
-                </li>
-                <li>
-                    <a href="/PruebasBD/Ventas.php">Ventas</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <div id="menuencabezado"></div>
+    <script>
+        $(function(){
+            $("#menuencabezado").load("menu_encabezado.html");
+        });
+    </script>
 
     <div id="contenido">
     	<h2>Autores del libro <?php echo $lib_nombre; ?></h2>

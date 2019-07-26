@@ -37,6 +37,7 @@ if($_GET) {
     <link rel="stylesheet" type="text/css" href="css/media.css">
     <link rel="stylesheet" type="text/css" href="css/grid.css">
     <meta name="viewport" content="initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -76,6 +77,7 @@ if($_GET) {
         }
         input[type=text] {
             padding: 6px 4px;
+            width: 77%;
             margin: 2px 0;
             box-sizing: border-box;
             border: none;
@@ -96,28 +98,16 @@ if($_GET) {
             </div>
         </div>
 
-        <div id="menuencabezado">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/PruebasBD/index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraAutores.php">Autores</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraLibros.php">Libros</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/Ventas.php">Ventas</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <div id="menuencabezado"></div>
+        <script>
+            $(function(){
+                $("#menuencabezado").load("menu_encabezado.html");
+            });
+        </script>
 
         <div id="contenido">
 
-            <h2 align="center">Ventas</h2>
+            <h1 align="center">Ventas</h1>
 
             <form action="Ventas.php" method="GET">
                 <fieldset>
@@ -131,7 +121,6 @@ if($_GET) {
             <?php
             if($_GET) {
                 echo '
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                 <br>
                 <form method="post">
                     <table>
@@ -169,8 +158,6 @@ if($_GET) {
                     $(this).closest('td').siblings().find('input').attr('disabled',set);  
                 });
             </script>
-
-            <script src="" async defer></script>
 
             <?php
             if($_POST) {

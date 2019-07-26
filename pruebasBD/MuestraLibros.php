@@ -22,6 +22,7 @@ if (!$query) {
     <link rel="stylesheet" type="text/css" href="css/media.css">
     <link rel="stylesheet" type="text/css" href="css/grid.css">
     <meta name="viewport" content="initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
         table {
           font-family: arial, sans-serif;
@@ -49,6 +50,13 @@ if (!$query) {
 			<div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
 			</div>
         </div>
+
+        <div id="menuencabezado"></div>
+        <script>
+			$(function(){
+				$("#menuencabezado").load("menu_encabezado.html");
+			});
+		</script>
 
         <div id="menuencabezado">
             <nav>

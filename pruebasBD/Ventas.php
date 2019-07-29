@@ -1,10 +1,18 @@
 <?php
+// ************************************************************************************************
+//  Este código (como su nombre lo dice) se dedica a manejar las ventas hechas
+//  en Papirhos, consiste en hacer la búsqueda del libro, elegir uno
+//  o más libros y especificar la cantidad de ejemplares vendidos por libro.
+//  Actualiza el inventario y (aún por escribir) crea un registro por cada venta. 
+// ************************************************************************************************
+
 // crea la conexión a la db
 require_once("db_connect.php");
 
-// IMPORTANTE, los acentos no funcionan sin esto
+// IMPORTANTE, hace funcionar los acentos en las querys
 $acentos = $conn->query("SET NAMES 'utf8'");
 
+// Espera a que sea hecha la búsqueda para realizar la consulta
 if($_GET) {
     $busqueda = $_GET["q"];
 
@@ -12,9 +20,13 @@ if($_GET) {
     $busqueda = stripslashes($busqueda);
     $busqueda = htmlspecialchars($busqueda);
 
-    $sql = "SELECT libros_aux.id_libros, titulo, precio_descuento FROM libros_aux
+    // Une las tablas de libros, precios e inventario para mostrar el título, precio del libro
+    // y la disponibilidad
+    $sql = "SELECT libros_aux.id_libros, titulo, precio_descuento, ejemplares FROM libros_aux
     JOIN precios_libro
     ON precios_libro.id_libros = libros_aux.id_libros
+    JOIN inventario_aux
+    ON precios_libro.id_libros = inventario_aux.id_libros    
     WHERE titulo LIKE '%$busqueda%' ORDER BY titulo ASC";
 
     $query = mysqli_query($conn, $sql);
@@ -83,6 +95,32 @@ if($_GET) {
             border: none;
             background:rgba(0,0,0,0.1);
         }
+        li a, .dropbtn {
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+          background-color: none;
+        }
+        li.dropdown {
+          display: inline-block;
+        }
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #678;
+          min-width: 150px;
+        }
+        .dropdown-content a {
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          padding-left: 4px;
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
     </style>
 </head>
 
@@ -119,6 +157,7 @@ if($_GET) {
             </form>
 
             <?php
+            // Espera a que se haga la búsqueda para mostrar los datos del libro requerido
             if($_GET) {
                 echo '
                 <br>
@@ -130,15 +169,19 @@ if($_GET) {
                                 <th>Título</th>
                                 <th>Precio Descuento</th>
                                 <th>Cantidad</th>
+                                <th>Disponibles</th>
                             </tr>
                         </thead>
                         <tbody>';
-
+                        // Muestra cada libro que coincida con la búsqueda 
+                        // **falta mejorar(reaccionar si no hay coincidencias con la búsqueda)**
                         while ($row = mysqli_fetch_array($query)) {
+                            // no permite vender más libros de los que hay disponibles (según inventario)
                             echo '<tr>
                                     <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
                                     <td align="center">$'.$row['precio_descuento'].'</td>
-                                    <td align="center"><input type="number" name="cantidad[]" value="1" min="1" disabled></td>
+                                    <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'"disabled></td>
+                                    <td align="center">'.$row['ejemplares'].'</td>
                                 </tr>';
                         }
 
@@ -161,19 +204,30 @@ if($_GET) {
 
             <?php
             if($_POST) {
-                $venta = $_POST['busq'];
+                //**falta mejorar (agregar registro de ventas y tener cierto control de ejemplares
+                // vendidos, como lo es no vender más ejemplares de los disponibles en inventario)**
+                // los elementos seleccionado (con el checkbox habilitado) se guardan en arrays
+                // donde "$cant[i]" es el número de ejemplares vendidos de "$libro_vendido[i]" libro
+                $libro_vendido = $_POST['busq'];
                 $cant = $_POST['cantidad'];
-                for($i = 0; $i < count($venta); $i++) { 
+                for($i = 0; $i < count($libro_vendido); $i++) {
+                    // Se actualiza el inventario eliminando "$cant[i]" de ejemplares del libro
+                    // "$libro_vendido[i]" en la base de datos
                     $sql_venta  = "UPDATE inventario_aux
                     SET ejemplares = ejemplares - '$cant[$i]'
-                    WHERE id_libros = '$venta[$i]'";
+                    WHERE id_libros = '$libro_vendido[$i]'";
 
                     $query2 = mysqli_query($conn, $sql_venta);
 
+                    // **falta mejorar(confirmar cada venta exitosa)** es temporal
                     if (!$query2) {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     } else {
-                        echo "Venta exitosa!<br>";
+                        if($cant[$i] > 1) {
+                            echo "Venta de $cant[$i] ejemplares de $libro_vendido[$i] exitosa!<br>";
+                        } else {
+                            echo "Venta de un ejemplar de $libro_vendido[$i] exitosa!";
+                        }
                     }
                 }
             }

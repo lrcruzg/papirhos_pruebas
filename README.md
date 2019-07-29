@@ -18,16 +18,19 @@ por numeros auto incrementables y les puse otro nombre a las tablas como _libros
 originalmente, por lo que usar la BD dada es necesario.
 
 ## Página principal
-![index2_ss](https://user-images.githubusercontent.com/18238011/61854535-e5270800-ae83-11e9-81bb-9bbc45366da2.png)
+![index3_ss](https://user-images.githubusercontent.com/18238011/62037842-3142b700-b1ba-11e9-9391-348cc210a948.png)
 
 ## Lista de Autores
-![autores2_ss](https://user-images.githubusercontent.com/18238011/61854597-0b4ca800-ae84-11e9-95ab-6500e56bb990.png)
+![autores3_ss](https://user-images.githubusercontent.com/18238011/62037872-3ef83c80-b1ba-11e9-9387-6d846879e36e.png)
 
 ## Libros escritos por cierto autor
 ![libros_autor2_ss](https://user-images.githubusercontent.com/18238011/61854627-1bfd1e00-ae84-11e9-8386-78ffe1d8855e.png)
 
 ## Lista de Libros
-![libros2_ss](https://user-images.githubusercontent.com/18238011/61854756-5c5c9c00-ae84-11e9-91ca-40abe05ba2ca.png)
+![libros3_ss](https://user-images.githubusercontent.com/18238011/62037895-4cadc200-b1ba-11e9-991c-3d5c5861484e.png)
 
 ## Página de Ventas
-![ventas2_ss](https://user-images.githubusercontent.com/18238011/61854689-3df6a080-ae84-11e9-979c-afe2f40f29b3.png)
+![ventas3_ss](https://user-images.githubusercontent.com/18238011/62037926-5afbde00-b1ba-11e9-86d6-ed29fec14116.png)
+
+## Actualiza Inventario
+![actualiza_inven3](https://user-images.githubusercontent.com/18238011/62037971-71a23500-b1ba-11e9-93a2-4308f85c620d.png)

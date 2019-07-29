@@ -1,7 +1,13 @@
 <?php
-// crea la conexión a la db
+// ************************************************************************************************
+//  Muestra todos los libros en la base de datos junto con la colección, serie y número de serie
+//  de cada título
+// ************************************************************************************************
+
+// Crea la conexión a la db
 require_once("db_connect.php");
 
+// Pide todos los datos del cada libros en orden alfabético
 $sql = "SELECT * FROM libros_aux ORDER BY id_libros ASC";
 
 $query = mysqli_query($conn, $sql);
@@ -30,12 +36,37 @@ if (!$query) {
         }
 
         td, th {
-          /*border: 1px solid black;*/
           padding: 3px;
         }
 
         tr:nth-child(even) {
           background-color: #f2f2f2;
+        }
+        li a, .dropbtn {
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+          background-color: none;
+        }
+        li.dropdown {
+          display: inline-block;
+        }
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #678;
+          min-width: 150px;
+        }
+        .dropdown-content a {
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          padding-left: 4px;
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
         }
     </style>
 </head>
@@ -58,25 +89,6 @@ if (!$query) {
 			});
 		</script>
 
-        <div id="menuencabezado">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/PruebasBD/index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraAutores.php">Autores</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/MuestraLibros.php">Libros</a>
-                    </li>
-                    <li>
-                        <a href="/PruebasBD/Ventas.php">Ventas</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
         <div id="contenido">
 
 			<h1 align="center">Tabla de Libros</h1>
@@ -94,6 +106,8 @@ if (!$query) {
 				<tbody>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
+					// Crea un link a DatosLibro.php con el título para mostrat los autores del libro "$row[titulo]"
+					// para esto necesita pasar el id_libros y el titulo por GET
 					echo '<tr>
 							<td align="center">'.$row['id_libros'].'</td>
 		                    <td>

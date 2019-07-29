@@ -1,11 +1,18 @@
 <?php
+// ************************************************************************************************
+//  Muestra los libros (co)escritos dado un autor 
+// ************************************************************************************************
+
+// id del autor de interés
 $id = $_GET['autor'];
+
+// nombre completo del autor de interés, solo se usa para mostrarlo
 $name = $_GET['nombre'];
 
 // crea la conexión a la db
 require_once("db_connect.php");
 
-$sql = "SELECT titulo, coleccion, serie FROM libros_autores_aux
+$sql = "SELECT libros_aux.id_libros, titulo, coleccion, serie FROM libros_autores_aux
 		JOIN libros_aux
 			ON libros_aux.id_libros = libros_autores_aux.id_libros
 		WHERE id_autores = '$id'";
@@ -35,12 +42,37 @@ if (!$query) {
         }
 
         td, th {
-          /*border: 1px solid black;*/
           padding: 3px;
         }
 
         tr:nth-child(even) {
           background-color: #f2f2f2;
+        }
+        li a, .dropbtn {
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+          background-color: none;
+        }
+        li.dropdown {
+          display: inline-block;
+        }
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #678;
+          min-width: 150px;
+        }
+        .dropdown-content a {
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          padding-left: 4px;
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
         }
     </style>
 </head>
@@ -77,8 +109,14 @@ if (!$query) {
 				<tbody>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
+                    // Crea un link a DatosLibro.php con el título para mostrat los autores del libro "$row[titulo]"
+                    // para esto necesita pasar el id_libros y el titulo por GET
 					echo '<tr>
-							<td>'.utf8_encode($row['titulo']).'</td>
+                            <td>
+                                <a href="DatosLibro.php?libro='.$row['id_libros'].'&titulo='.utf8_encode($row['titulo']).'">'.
+                                    utf8_encode($row['titulo']).'
+                                </a>
+                            </td>
 		                    <td>'.utf8_encode($row['coleccion']).'</td>
 		                    <td>'.utf8_encode($row['serie']).'</td>
 						</tr>';

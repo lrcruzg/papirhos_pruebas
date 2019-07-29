@@ -1,8 +1,12 @@
 <?php
+// ************************************************************************************************
+//  Muestra el inventario de los libros, sólo muestra el título y el número de ejemplares   
+// ************************************************************************************************
 
-// crea la conexión a la db
+// Crea la conexión a la db
 require_once("db_connect.php");
 
+// Une a las tablas de inventario y libros
 $sql = "SELECT inventario_aux.id_libros, titulo, ejemplares FROM inventario_aux 
 		JOIN libros_aux
 		On libros_aux.id_libros = inventario_aux.id_libros
@@ -40,6 +44,32 @@ if (!$query) {
         tr:nth-child(even) {
           background-color: #f2f2f2;
         }
+        li a, .dropbtn {
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+          background-color: none;
+        }
+        li.dropdown {
+          display: inline-block;
+        }
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #678;
+          min-width: 150px;
+        }
+        .dropdown-content a {
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          padding-left: 4px;
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +106,8 @@ if (!$query) {
 				<tbody>
 				<?php
 				while ($row = mysqli_fetch_array($query)) {
+					// Al mostrar el titulo del libro hace un link a DatosLibro.php para mostrar los
+					// autores del libro, para esto necesita pasar el id_libros y el titulo por GET
 					echo '<tr>
 		                    <td>
 		                    	<a href="DatosLibro.php?libro='.$row['id_libros'].'&titulo='.utf8_encode($row['titulo']).'">'.

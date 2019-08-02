@@ -1,6 +1,6 @@
--- MySQL dump 10.17  Distrib 10.3.16-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.17  Distrib 10.3.16-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: pruebasBD
+-- Host: localhost    Database: pruebasbd
 -- ------------------------------------------------------
 -- Server version	10.3.16-MariaDB
 
@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `pruebasBD`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pruebasBD` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `pruebasBD`;
 
 --
 -- Table structure for table `autores`
@@ -380,6 +372,30 @@ INSERT INTO `referencias` VALUES ('A_C_01',''),('A_C_02',''),('A_C_03',''),('A_C
 UNLOCK TABLES;
 
 --
+-- Table structure for table `registro_ventas`
+--
+
+DROP TABLE IF EXISTS `registro_ventas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registro_ventas` (
+  `id_libros` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro_ventas`
+--
+
+LOCK TABLES `registro_ventas` WRITE;
+/*!40000 ALTER TABLE `registro_ventas` DISABLE KEYS */;
+INSERT INTO `registro_ventas` VALUES (118,50,'2019-08-02 07:54:53'),(127,2,'2019-08-02 07:57:22'),(112,6,'2019-08-02 07:58:10'),(113,3,'2019-08-02 07:58:11');
+/*!40000 ALTER TABLE `registro_ventas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `versiones`
 --
 
@@ -416,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-25  1:55:55
+-- Dump completed on 2019-08-02  3:08:12

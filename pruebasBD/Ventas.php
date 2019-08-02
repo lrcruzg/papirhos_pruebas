@@ -180,7 +180,7 @@ if($_GET) {
                             echo '<tr>
                                     <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
                                     <td align="center">$'.$row['precio_descuento'].'</td>
-                                    <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'"disabled></td>
+                                    <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'" disabled></td>
                                     <td align="center">'.$row['ejemplares'].'</td>
                                 </tr>';
                         }
@@ -214,10 +214,16 @@ if($_GET) {
                     // Se actualiza el inventario eliminando "$cant[i]" de ejemplares del libro
                     // "$libro_vendido[i]" en la base de datos
                     $sql_venta  = "UPDATE inventario_aux
-                    SET ejemplares = ejemplares - '$cant[$i]'
-                    WHERE id_libros = '$libro_vendido[$i]'";
+                                    SET ejemplares = ejemplares - '$cant[$i]'
+                                    WHERE id_libros = '$libro_vendido[$i]'";
+
+                    $sql_registro = "INSERT INTO registro_ventas (id_libros, cantidad) 
+                                    VALUES ('$libro_vendido[$i]', '$cant[$i]')";
+
 
                     $query2 = mysqli_query($conn, $sql_venta);
+
+                    $query3 = mysqli_query($conn, $sql_registro);
 
                     // **falta mejorar(confirmar cada venta exitosa)** es temporal
                     if (!$query2) {

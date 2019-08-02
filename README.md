@@ -2,13 +2,11 @@
 
 La página copia el estilo de la pagina de [Papirhos](http://texedores.matem.unam.mx/publicaciones/index.html)
 para añadir las funciones de agregar/eliminar autor, ver los libros en la base de datos y sus respectivos autores, 
-tener control del inventario de libros, además tiene (aún en construcción) un formulario para vender los libros, 
-faltan bastantes funciones que eventualmente estarán disponibles (creo) pero que aún no he pensado cómo hacerlas 
-o no me han salido como lo son:
-- Agregar libros de forma adecuada
+tener control del inventario de libros, un formulario para vender los libros, faltan bastantes funciones que eventualmente
+estarán disponibles (creo) pero que aún no he pensado cómo hacerlas o no me han salido como lo son:
+- Agregar libros de forma adecuada (aparece la opción pero no es funcional)
 - Mejorar la forma de agregar autores (agregar autores sin que estos tengan libro)
-- Ventas (agregar la fecha de venta, la persona que vende y cosa por el estilo)
-- Inventarios (opción de actualizar el inventario y mostrarlo)
+- Ventas (agregar la persona que vende, pero primero es hacer el log in y usar eso para el registro de ventas)
 - Log in 
 
 Para lo anterior aún falta pensar bien como hacer las tablas que guardarán la información (inventarios, ventas)

@@ -1,9 +1,9 @@
 <?php
 // ************************************************************************************************
-//  Este código (como su nombre lo dice) se dedica a manejar las ventas hechas
-//  en Papirhos, consiste en hacer la búsqueda del libro, elegir uno
-//  o más libros y especificar la cantidad de ejemplares vendidos por libro.
-//  Actualiza el inventario y (aún por escribir) crea un registro por cada venta. 
+//  Maneja las ventas hechas en Papirhos, consiste en hacer la búsqueda del libro a vender,
+//  elegir unoo más libros y especificar la cantidad de ejemplares vendidos por libro, y el precio
+//  el cual puede ser el precio de lista o el precio con descuento
+//  Actualiza el inventario y crea un registro por cada venta con los datos anteriores 
 // ************************************************************************************************
 
 // crea la conexión a la db
@@ -96,30 +96,30 @@ if($_GET) {
             background:rgba(0,0,0,0.1);
         }
         li a, .dropbtn {
-          display: inline-block;
-          text-align: center;
-          text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
         li a:hover, .dropdown:hover .dropbtn {
-          background-color: none;
+            background-color: none;
         }
         li.dropdown {
-          display: inline-block;
+            display: inline-block;
         }
         .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #678;
-          min-width: 150px;
+            display: none;
+            position: absolute;
+            background-color: #678;
+            min-width: 150px;
         }
         .dropdown-content a {
-          text-decoration: none;
-          display: block;
-          text-align: left;
-          padding-left: 4px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            padding-left: 4px;
         }
         .dropdown:hover .dropdown-content {
-          display: block;
+            display: block;
         }
     </style>
 </head>
@@ -167,7 +167,7 @@ if($_GET) {
                         <thead>
                             <tr>
                                 <th>Título</th>
-                                <th>Precio Descuento</th>
+                                <th>Precio</th>
                                 <th>Cantidad</th>
                                 <th>Disponibles</th>
                             </tr>
@@ -176,10 +176,16 @@ if($_GET) {
                         // Muestra cada libro que coincida con la búsqueda 
                         // **falta mejorar(reaccionar si no hay coincidencias con la búsqueda)**
                         while ($row = mysqli_fetch_array($query)) {
+                            $precio_de_lista = ($row['precio_descuento'])*2;
                             // no permite vender más libros de los que hay disponibles (según inventario)
                             echo '<tr>
                                     <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
-                                    <td align="center">$'.$row['precio_descuento'].'</td>
+                                    <td align="center">
+                                        <select name="precio[]" disabled>
+                                            <option value="'.$row['precio_descuento'].'">$'.$row['precio_descuento'].'</option>
+                                            <option value="'.$precio_de_lista.'">$'.$precio_de_lista.'</option>
+                                        </select>
+                                    </td>
                                     <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'" disabled></td>
                                     <td align="center">'.$row['ejemplares'].'</td>
                                 </tr>';
@@ -198,18 +204,17 @@ if($_GET) {
             <script type="text/javascript">
                 $('.enable').change(function(){
                     var set =  $(this).is(':checked') ? false : true;
-                    $(this).closest('td').siblings().find('input').attr('disabled',set);  
+                    $(this).closest('td').siblings().find('select').attr('disabled',set); 
+                    $(this).closest('td').siblings().find('input').attr('disabled',set);
                 });
             </script>
 
             <?php
             if($_POST) {
-                //**falta mejorar (agregar registro de ventas y tener cierto control de ejemplares
-                // vendidos, como lo es no vender más ejemplares de los disponibles en inventario)**
-                // los elementos seleccionado (con el checkbox habilitado) se guardan en arrays
-                // donde "$cant[i]" es el número de ejemplares vendidos de "$libro_vendido[i]" libro
-                $libro_vendido = $_POST['busq'];
-                $cant = $_POST['cantidad'];
+                // Los elementos seleccionado (con el checkbox habilitado) se guardan en arrays
+                $libro_vendido = $_POST['busq'];  // id del libro vendido
+                $cant = $_POST['cantidad'];       // cantidad de ejemplares vendidos del libro 
+                $precio = $_POST['precio'];       // precio unitario del libro
                 for($i = 0; $i < count($libro_vendido); $i++) {
                     // Se actualiza el inventario eliminando "$cant[i]" de ejemplares del libro
                     // "$libro_vendido[i]" en la base de datos
@@ -217,12 +222,11 @@ if($_GET) {
                                     SET ejemplares = ejemplares - '$cant[$i]'
                                     WHERE id_libros = '$libro_vendido[$i]'";
 
-                    $sql_registro = "INSERT INTO registro_ventas (id_libros, cantidad) 
-                                    VALUES ('$libro_vendido[$i]', '$cant[$i]')";
-
+                    // Se crea el registro con las datos anteriores, además de la fecha y hora de la venta
+                    $sql_registro = "INSERT INTO registro_ventas (id_libros, cantidad, precio_por_ejemplar) 
+                                    VALUES ('$libro_vendido[$i]', '$cant[$i]', $precio[$i])";
 
                     $query2 = mysqli_query($conn, $sql_venta);
-
                     $query3 = mysqli_query($conn, $sql_registro);
 
                     // **falta mejorar(confirmar cada venta exitosa)** es temporal
@@ -242,6 +246,5 @@ if($_GET) {
 
         </div>
     </div>
-    
 </body>
 </html>

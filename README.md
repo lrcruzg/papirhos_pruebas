@@ -1,7 +1,7 @@
 # Página pueba de papirhos
 
 La página copia el estilo de la pagina de [Papirhos](http://texedores.matem.unam.mx/publicaciones/index.html)
-para añadir las funciones de agregar/eliminar autor, ver los libros en la base de datos y sus respectivos autores, 
+para añadir las funciones de agregar/eliminar autorres y libros, ver los libros en la base de datos junto a sus respectivos autores, 
 tener control del inventario de libros, un formulario para vender los libros, faltan bastantes funciones que eventualmente
 estarán disponibles (creo) pero que aún no he pensado cómo hacerlas o no me han salido como lo son:
 - Agregar libros de forma adecuada (aparece la opción pero no es funcional)
@@ -28,7 +28,7 @@ originalmente, por lo que usar la BD dada es necesario.
 ![libros3_ss](https://user-images.githubusercontent.com/18238011/62037895-4cadc200-b1ba-11e9-991c-3d5c5861484e.png)
 
 ## Página de Ventas
-![ventas3_ss](https://user-images.githubusercontent.com/18238011/62037926-5afbde00-b1ba-11e9-86d6-ed29fec14116.png)
+![ventas3_ss](https://user-images.githubusercontent.com/18238011/62420481-879b7400-b658-11e9-84fb-76b7dbb2a7f0.png)
 
 ## Actualiza Inventario
 ![actualiza_inven3](https://user-images.githubusercontent.com/18238011/62037971-71a23500-b1ba-11e9-93a2-4308f85c620d.png)

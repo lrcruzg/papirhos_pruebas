@@ -21,13 +21,15 @@ if($_GET) {
     $busqueda = htmlspecialchars($busqueda);
 
     // Une las tablas de libros, precios e inventario para mostrar el título, precio del libro
-    // y la disponibilidad
+    // y la disponibilidad. Busca los libros por título o colección
     $sql = "SELECT libros_aux.id_libros, titulo, precio_descuento, ejemplares FROM libros_aux
-    JOIN precios_libro
-    ON precios_libro.id_libros = libros_aux.id_libros
-    JOIN inventario_aux
-    ON precios_libro.id_libros = inventario_aux.id_libros    
-    WHERE titulo LIKE '%$busqueda%' ORDER BY titulo ASC";
+            JOIN precios_libro
+            ON precios_libro.id_libros = libros_aux.id_libros
+            JOIN inventario_aux
+            ON precios_libro.id_libros = inventario_aux.id_libros    
+            WHERE titulo LIKE '%$busqueda%'
+            OR coleccion LIKE '%$busqueda%'
+            ORDER BY titulo ASC";
 
     $query = mysqli_query($conn, $sql);
 
@@ -150,7 +152,7 @@ if($_GET) {
             <form action="Ventas.php" method="GET">
                 <fieldset>
                     <p class="busqueda">            
-                        Buscar libro:<input type="text" name="q" placeholder="Título, Autor">
+                        Buscar libro:<input type="text" name="q" placeholder="Título, Colección">
                         <input type="submit" class="boton button1" value="Buscar">
                     </p>
                 </fieldset>

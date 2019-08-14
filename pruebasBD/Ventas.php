@@ -20,16 +20,29 @@ if($_GET) {
     $busqueda = stripslashes($busqueda);
     $busqueda = htmlspecialchars($busqueda);
 
-    // Une las tablas de libros, precios e inventario para mostrar el título, precio del libro
-    // y la disponibilidad. Busca los libros por título o colección
+    // parte la búsqueda con el separador "+"
+    $busqueda_separada = explode("+", $busqueda);
+
+    // hace la busqueda (muestra el título, precio y disponibilidad) de con el primer argumento (antes del primer + si es que hay)
     $sql = "SELECT libros_aux.id_libros, titulo, precio_descuento, ejemplares FROM libros_aux
             JOIN precios_libro
             ON precios_libro.id_libros = libros_aux.id_libros
             JOIN inventario_aux
             ON precios_libro.id_libros = inventario_aux.id_libros    
-            WHERE titulo LIKE '%$busqueda%'
-            OR coleccion LIKE '%$busqueda%'
-            ORDER BY titulo ASC";
+            WHERE titulo LIKE '%$busqueda_separada[0]%'
+            OR coleccion LIKE '%$busqueda_separada[0]%'
+            OR num_serie LIKE '%$busqueda_separada[0]%'";
+
+    // si hay más argumentos también los agrega a la búsqueda
+    for($i = 1; $i < count($busqueda_separada); $i++) { 
+        $busq_aux = $busqueda_separada[$i];
+        $sql = $sql." OR titulo LIKE '%$busq_aux%' 
+                    OR coleccion LIKE '%$busq_aux%'
+                    OR num_serie LIKE '%$busq_aux%'";
+    }
+
+    // los resultados los ordena por orden alfabético con respecto al título
+    $sql = $sql." ORDER BY titulo ASC";
 
     $query = mysqli_query($conn, $sql);
 
@@ -66,37 +79,7 @@ if($_GET) {
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .boton {
-            border: none;
-            color: white;
-            padding: 4px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 13px 2px;
-            cursor: pointer;
-            opacity: 1;
-        }
-        .button1 {
-            opacity: 1;
-            color: #456; 
-            border: 1px solid #456;
-        }
-        .button1:hover {
-            background-color: #456;
-            color: white;
-        }
-        p.busqueda {
-            padding-left: 5%;
-        }
-        input[type=text] {
-            padding: 6px 4px;
-            width: 77%;
-            margin: 2px 0;
-            box-sizing: border-box;
-            border: none;
-            background:rgba(0,0,0,0.1);
-        }
+
         li a, .dropbtn {
             display: inline-block;
             text-align: center;
@@ -123,6 +106,38 @@ if($_GET) {
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        
+        input[type=text] {
+          background-color: #f2f2f2;
+          width: 90%;
+          border: 1px solid transparent;
+          background-color: #f2f2f2;
+          padding: 12px;
+          font-size: 17px;
+          color: #456;
+        }
+
+        input[type=submit] {
+          background-color: darkorange;
+          color: #fff;
+          cursor: pointer;
+          border: 1px solid transparent;
+          padding: 12px;
+          font-size: 15px;
+        }
+
+        input[type=number] {
+          padding: 4px;
+        }
+
+        input[type=submit]:hover {
+            background-color: orange;
+        }
+
+        .boton_vender {
+            padding: 20px 1%;
+        }
+
     </style>
 </head>
 
@@ -149,13 +164,9 @@ if($_GET) {
 
             <h1 align="center">Ventas</h1>
 
-            <form action="Ventas.php" method="GET">
-                <fieldset>
-                    <p class="busqueda">            
-                        Buscar libro:<input type="text" name="q" placeholder="Título, Colección">
-                        <input type="submit" class="boton button1" value="Buscar">
-                    </p>
-                </fieldset>
+            <form action="Ventas.php" method="GET" autocomplete="off">
+                <input type="text" name="q" placeholder="Título, Colección, Número">
+                <input type="submit" value="Buscar">
             </form>
 
             <?php
@@ -196,7 +207,9 @@ if($_GET) {
                         echo '
                         </tbody>    
                     </table>
-                    <input class="boton button1" type="submit" value="Vender">
+                    <div class="boton_vender">
+                        <input type="submit" value="Vender">
+                    </div>
                 </form>';
 
             }

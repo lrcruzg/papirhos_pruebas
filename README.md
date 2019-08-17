@@ -9,7 +9,7 @@ estarán disponibles (creo) pero que aún no he pensado cómo hacerlas o no me h
 - Ventas (agregar la persona que vende, pero primero es hacer el log in y usar eso para el registro de ventas)
 - Log in 
 
-Para lo anterior aún falta pensar bien como hacer las tablas que guardarán la información (inventarios, ventas)
+Para lo anterior, aún falta pensar bien como hacer las tablas que guardarán la información (inventarios, ventas)
 y definir exactamente las tablas existentes.
 La base de datos que uso para esta página es muy parecida a la dada pero no es la misma, cambié los id de libros y autores
 por numeros auto incrementables y les puse otro nombre a las tablas como _libros_aux_ en lugar de _libros_ como era 

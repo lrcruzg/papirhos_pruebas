@@ -1,182 +1,73 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <title>Papirhos</title>
-        <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
-        <link rel="stylesheet" type="text/css" href="css/menu2.css">
-        <link rel="stylesheet" type="text/css" href="css/general.css">
-        <link rel="stylesheet" type="text/css" href="css/media.css">
-        <link rel="stylesheet" type="text/css" href="css/grid.css">
-        <meta name="viewport" content="initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <style type="text/css">
-            .botonn {
-              border: none;
-              color: white;
-              padding: 4px 15px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              margin: 4px 2px;
-              cursor: pointer;
-              opacity: 1;
-            }
-            .button1 {
-              opacity: 1;
-              color: #456; 
-              border: 1px solid #456;
-            }
-            .button1:hover {
-              background-color: #456;
-              color: white;
-            }
-            input[type=text] {
-              padding: 6px 4px;
-              margin: 2px 0;
-              box-sizing: border-box;
-              border: none;
-              background:rgba(0,0,0,0.1);
-            }
-            p.busqueda {
-                padding-left: 5%;
-            }
-            table {
-                padding-left: 5%;
-            }
-            li a, .dropbtn {
-              display: inline-block;
-              text-align: center;
-              text-decoration: none;
-            }
-            li a:hover, .dropdown:hover .dropbtn {
-              background-color: none;
-            }
-            li.dropdown {
-              display: inline-block;
-            }
-            .dropdown-content {
-              display: none;
-              position: absolute;
-              background-color: #678;
-              min-width: 150px;
-            }
-            .dropdown-content a {
-              text-decoration: none;
-              display: block;
-              text-align: left;
-              padding-left: 4px;
-            }
-            .dropdown:hover .dropdown-content {
-              display: block;
-            }
-        </style>
-    </head> 
-    <body>
-        <div id="contenedor">
-            
-            <div id="encabezado">
-                <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
-                </div>
-                <div id="logomid">
-                </div>
-                <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
-                </div>
+<head>
+    <meta charset="utf-8">
+    <title>Papirhos</title>
+    <link type="image/x-icon" href="papirhos_im.ico" rel="icon" />
+    <link rel="stylesheet" type="text/css" href="css/menu2.css">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <meta name="viewport" content="initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+        li a, .dropbtn {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+            background-color: none;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #678;
+            min-width: 150px;
+        }
+
+        .dropdown-content a {
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            padding-left: 4px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head> 
+<body>
+    <div id="contenedor">
+        
+        <div id="encabezado">
+            <div id="logoizq" onclick="window.open('http://www.unam.mx');" style="cursor:pointer;">
             </div>
-
-            <div id="menuencabezado"></div>
-            <script>
-                $(function(){
-                    $("#menuencabezado").load("menu_encabezado.html");
-                });
-            </script>
-
-            <div id="contenido">
-
-                <h2>Agregar Libro</h2>
-                <form action="AgregaLibro.php" method="POST">
-                  <fieldset>
-                    <legend>Información del libro a agregar</legend>
-
-                    <table>
-                        <tr>
-                            <td align="right">Título:</td>
-                            <td><input type="text" name="tit" placeholder="Título del libro" required></td>
-                        </tr>
-
-                        <tr>
-                            <td align="right">Colección:</td>
-                            <td><input type="text" name="colecc" placeholder="ej. Papirhos " required></td>
-                        </tr>
-
-                        <tr>
-                            <td align="right">Serie:</td>
-                            <td><input type="text" name="ser" placeholder="ej. Mixbaal" required></td>
-                        </tr>
-
-                        <tr>
-                            <td align="right">Núm de Serie:</td>
-                            <td><input type="text" name="numser" placeholder="ej. 1" required></td>
-                        </tr>
-
-                    </table>
-                    <input type="reset" class="botonn button1" value="Reset">
-                    <input type="submit" class="botonn button1" value="Agregar" />
-                  </fieldset>
-                </form>
-
-
-                <h2>Agregar Autores</h2>
-                <form action="AgregaAutor.php" method="POST">
-                  <fieldset>
-                    <legend>Información de autor a agregar</legend>
-
-                    <table>
-                        <tr>
-                            <td align="right">Nombre:</td>
-                            <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Apellido Paterno: </td>
-                            <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Apellido Materno: </td>
-                            <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-                        </tr>
-                    </table>
-                    <input class="botonn button1" type="reset" value="Reset">
-                    <input class="botonn button1" type="submit" value="Agregar">
-                  </fieldset>
-                </form>
-                
-                <script src="" async defer></script>
-                <br>
-                <h2>Borrar Autores</h2>
-                <form action="BorraAutor.php" method="POST">
-                  <fieldset>
-                    <legend>Información de autor a borrar.</legend>
-                    <table>
-                        <tr>
-                            <td align="right">Nombre: </td>
-                            <td><input type="text" name="Nombre" placeholder="Ingresa el nombre" required></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Apellido Paterno: </td>
-                            <td><input type="text" name="ApellidoPaterno" placeholder="Ingresa el apellido paterno" required></td>
-                        </tr>
-                        <tr>
-                            <td align="right">Apellido Materno: </td>
-                            <td><input type="text" name="ApellidoMaterno" placeholder="Ingresa el apellido materno"></td>
-                        </tr>
-                    </table>
-                    <input type="reset" class="botonn button1" value="Reset">
-                    <input type="submit" class="botonn button1" value="Eliminar">
-                  </fieldset>
-                </form>
-
+            <div id="logomid">
+            </div>
+            <div id="logoder" onclick="window.open('http://www.matem.unam.mx');" style="cursor:pointer;">
             </div>
         </div>
-        
 
-    </body>
+        <div id="menuencabezado"></div>
+        <script>
+            $(function(){
+                $("#menuencabezado").load("menu_encabezado.html");
+            });
+        </script>
+
+        <div id="contenido">
+
+            <h2> Pagina prueba de ventas de papirhos. </h2>
+
+        </div>
+    </div>
+    
+
+</body>
 </html>

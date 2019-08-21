@@ -23,20 +23,32 @@ if($_GET) {
     // parte la búsqueda con el separador "+"
     $busqueda_separada = explode("+", $busqueda);
 
+    $sql_vista_autores_nombre_completo = "CREATE VIEW autores_nombre_completo AS
+                                        SELECT id_autores, concat(nombre,' ',apellido_paterno,' ',apellido_materno) as nombre_completo 
+                                        FROM autores_aux";
+
+    $query_vista = mysqli_query($conn, $sql_vista_autores_nombre_completo);
+
     // hace la busqueda (muestra el título y el numero de ejemplares) con el primer argumento (antes del primer + si es que hay)
-    $sql = "SELECT libros_aux.id_libros, titulo, ejemplares FROM inventario_aux
+    $sql = "SELECT DISTINCT libros_aux.id_libros, titulo, ejemplares FROM inventario_aux
             JOIN libros_aux
-            ON libros_aux.id_libros = inventario_aux.id_libros    
+            ON libros_aux.id_libros = inventario_aux.id_libros
+            JOIN libros_autores_aux
+            ON libros_autores_aux.id_libros = libros_aux.id_libros
+            JOIN autores_nombre_completo
+            ON autores_nombre_completo.id_autores = libros_autores_aux.id_autores    
             WHERE titulo LIKE '%$busqueda_separada[0]%'
             OR coleccion LIKE '%$busqueda_separada[0]%'
-            OR num_serie LIKE '%$busqueda_separada[0]%'";
+            OR num_serie LIKE '%$busqueda_separada[0]%'
+            OR nombre_completo LIKE '%$busqueda_separada[0]%'";
 
     // si hay más argumentos también los agrega a la búsqueda
     for($i = 1; $i < count($busqueda_separada); $i++) { 
         $busq_aux = $busqueda_separada[$i];
         $sql = $sql." OR titulo LIKE '%$busq_aux%' 
                     OR coleccion LIKE '%$busq_aux%'
-                    OR num_serie LIKE '%$busq_aux%'";
+                    OR num_serie LIKE '%$busq_aux%'
+                    OR nombre_completo LIKE '%$busq_aux%'";
     }
 
     // los resultados los ordena por orden alfabético con respecto al título
@@ -80,59 +92,84 @@ if($_GET) {
         }
         
         li a, .dropbtn {
-          display: inline-block;
-          text-align: center;
-          text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
         li a:hover, .dropdown:hover .dropbtn {
-          background-color: none;
+            background-color: none;
         }
         li.dropdown {
-          display: inline-block;
+            display: inline-block;
         }
         .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #678;
-          min-width: 150px;
+            display: none;
+            position: absolute;
+            background-color: #678;
+            min-width: 150px;
         }
         .dropdown-content a {
-          text-decoration: none;
-          display: block;
-          text-align: left;
-          padding-left: 4px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            padding-left: 4px;
         }
         .dropdown:hover .dropdown-content {
-          display: block;
+            display: block;
         }
 
         input[type=text] {
-          background-color: #f2f2f2;
-          width: 90%;
-          border: 1px solid transparent;
-          background-color: #f2f2f2;
-          padding: 12px;
-          font-size: 17px;
-          color: #456;
+            background-color: #f2f2f2;
+            width: 90%;
+            border: 1px solid transparent;
+            background-color: #f2f2f2;
+            padding: 12px;
+            font-size: 17px;
+            color: #456;
         }
 
         input[type=submit] {
-          background-color: darkorange;
-          color: #fff;
-          cursor: pointer;
-          border: 1px solid transparent;
-          padding: 12px;
-          font-size: 15px;
+            background-color: darkorange;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 12px;
+            font-size: 15px;
         }
 
         input[type=number] {
-          padding: 4px;
+            padding: 4px;
         }
 
         input[type=submit]:hover {
             background-color: orange;
         }
 
+        .boton_actualizar {
+            padding: 20px 1%;
+        }
+
+        .alert {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
     </style>
 </head>
 
@@ -159,38 +196,44 @@ if($_GET) {
 
             <h1 align="center">Actualiza Inventario</h1>
 
-            <form action="ActualizaInventario.php" method="GET" autocomplete="off">
-                <input type="text" name="q" placeholder="Título, Colección, Número">
+            <form action="ActualizaInventario.php" method="GET">
+                <input type="text" name="q" placeholder="Título, Autor, Colección, Número">
                 <input type="submit" value="Buscar">
             </form>
 
             <?php
             if($_GET) {
-                echo '
-                <br>
-                <form method="post">
-                    <table>
-                        <caption class="title"><b>Resultados de '.$busqueda.'</caption>
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>Ejemplares</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
+                if(mysqli_num_rows($query) == 0) {
+                    echo "<h2>No hay resltados que coincidan con la búsqueda \"$busqueda\"</h2>";
+                } else {
+                    echo '
+                    <br>
+                    <form method="post">
+                        <table>
+                            <caption class="title"><b>Resultados de "'.$busqueda.'"</caption>
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Ejemplares</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
 
-                        while ($row = mysqli_fetch_array($query)) {
-                            echo '<tr>
-                                    <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
-                                    <td align="center"><input type="number" name="cantidad[]" value="'.$row['ejemplares'].'" min="0" disabled></td>
-                                </tr>';
-                        }
+                            while ($row = mysqli_fetch_array($query)) {
+                                echo '<tr>
+                                        <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
+                                        <td align="center"><input type="number" name="cantidad[]" value="'.$row['ejemplares'].'" min="0" disabled></td>
+                                    </tr>';
+                            }
 
-                        echo '
-                        </tbody>    
-                    </table>
-                    <input type="submit" value="Actualizar">
-                </form>';
+                            echo '
+                            </tbody>    
+                        </table>
+                         <div class="boton_actualizar">
+                            <input type="submit" value="Actualizar">
+                        </div>
+                    </form>';
+                }
 
             }
 
@@ -217,7 +260,13 @@ if($_GET) {
                     if (!$query2) {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     } else {
-                        echo "Cambio exitoso!<br>";
+                        // solo la uso para evitar problemas con los tipos de comillas
+                        $aux = "this.parentElement.style.display='none';";
+                        echo '<div class="alert">
+                                      <span class="closebtn" onclick="'.$aux.'">&times;</span> 
+                                      <strong>¡Cambio exitoso!</strong>
+                                      Ahora hay '.$cant[$i].' ejemplares de '.$venta[$i].'
+                                </div>';
                     }
                 }
             }

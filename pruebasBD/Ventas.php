@@ -1,7 +1,7 @@
 <?php
 // ************************************************************************************************
 //  Maneja las ventas hechas en Papirhos, consiste en hacer la búsqueda del libro a vender,
-//  elegir unoo más libros y especificar la cantidad de ejemplares vendidos por libro, y el precio
+//  elegir uno o más libros y especificar la cantidad de ejemplares vendidos por libro, y el precio
 //  el cual puede ser el precio de lista o el precio con descuento
 //  Actualiza el inventario y crea un registro por cada venta con los datos anteriores 
 // ************************************************************************************************
@@ -23,25 +23,39 @@ if($_GET) {
     // parte la búsqueda con el separador "+"
     $busqueda_separada = explode("+", $busqueda);
 
-    // hace la busqueda (muestra el título, precio y disponibilidad) de con el primer argumento (antes del primer + si es que hay)
-    $sql = "SELECT libros_aux.id_libros, titulo, precio_descuento, ejemplares FROM libros_aux
+
+    $sql_vista_autores_nombre_completo = "CREATE VIEW autores_nombre_completo AS
+                                        SELECT id_autores, concat(nombre,' ',apellido_paterno,' ',apellido_materno) as nombre_completo 
+                                        FROM autores_aux";
+
+    $query_vista = mysqli_query($conn, $sql_vista_autores_nombre_completo);
+
+
+    // hace la busqueda (muestra el título, precio y disponibilidad) con el primer argumento (antes del primer + si es que hay)
+    $sql = "SELECT  DISTINCT libros_aux.id_libros, titulo, precio_descuento, ejemplares FROM libros_aux
             JOIN precios_libro
             ON precios_libro.id_libros = libros_aux.id_libros
             JOIN inventario_aux
             ON precios_libro.id_libros = inventario_aux.id_libros    
+            JOIN libros_autores_aux
+            ON libros_autores_aux.id_libros = libros_aux.id_libros
+            JOIN autores_nombre_completo
+            ON autores_nombre_completo.id_autores = libros_autores_aux.id_autores
             WHERE titulo LIKE '%$busqueda_separada[0]%'
             OR coleccion LIKE '%$busqueda_separada[0]%'
-            OR num_serie LIKE '%$busqueda_separada[0]%'";
+            OR num_serie LIKE '%$busqueda_separada[0]%'
+            OR nombre_completo LIKE '%$busqueda_separada[0]%'";
 
     // si hay más argumentos también los agrega a la búsqueda
     for($i = 1; $i < count($busqueda_separada); $i++) { 
         $busq_aux = $busqueda_separada[$i];
         $sql = $sql." OR titulo LIKE '%$busq_aux%' 
                     OR coleccion LIKE '%$busq_aux%'
-                    OR num_serie LIKE '%$busq_aux%'";
+                    OR num_serie LIKE '%$busq_aux%'
+                    OR nombre_completo LIKE '%$busq_aux%'";
     }
 
-    // los resultados los ordena por orden alfabético con respecto al título
+    // los resultados los ordena alfabeticamente con respecto al título
     $sql = $sql." ORDER BY titulo ASC";
 
     $query = mysqli_query($conn, $sql);
@@ -108,26 +122,26 @@ if($_GET) {
         }
         
         input[type=text] {
-          background-color: #f2f2f2;
-          width: 90%;
-          border: 1px solid transparent;
-          background-color: #f2f2f2;
-          padding: 12px;
-          font-size: 17px;
-          color: #456;
+            background-color: #f2f2f2;
+            width: 90%;
+            border: 1px solid transparent;
+            background-color: #f2f2f2;
+            padding: 12px;
+            font-size: 17px;
+            color: #456;
         }
 
         input[type=submit] {
-          background-color: darkorange;
-          color: #fff;
-          cursor: pointer;
-          border: 1px solid transparent;
-          padding: 12px;
-          font-size: 15px;
+            background-color: darkorange;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 12px;
+            font-size: 15px;
         }
 
         input[type=number] {
-          padding: 4px;
+            padding: 4px;
         }
 
         input[type=submit]:hover {
@@ -136,6 +150,28 @@ if($_GET) {
 
         .boton_vender {
             padding: 20px 1%;
+        }
+
+        .alert {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
         }
 
     </style>
@@ -164,53 +200,57 @@ if($_GET) {
 
             <h1 align="center">Ventas</h1>
 
-            <form action="Ventas.php" method="GET" autocomplete="off">
-                <input type="text" name="q" placeholder="Título, Colección, Número">
+            <form action="Ventas.php" method="GET">
+                <input type="text" name="q" placeholder="Título, Autor, Colección, Número">
                 <input type="submit" value="Buscar">
             </form>
 
             <?php
             // Espera a que se haga la búsqueda para mostrar los datos del libro requerido
             if($_GET) {
-                echo '
-                <br>
-                <form method="post">
-                    <table>
-                        <caption class="title"><b>Resultados de '.$busqueda.'</caption>
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Disponibles</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-                        // Muestra cada libro que coincida con la búsqueda 
-                        // **falta mejorar(reaccionar si no hay coincidencias con la búsqueda)**
-                        while ($row = mysqli_fetch_array($query)) {
-                            $precio_de_lista = ($row['precio_descuento'])*2;
-                            // no permite vender más libros de los que hay disponibles (según inventario)
-                            echo '<tr>
-                                    <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
-                                    <td align="center">
-                                        <select name="precio[]" disabled>
-                                            <option value="'.$row['precio_descuento'].'">$'.$row['precio_descuento'].'</option>
-                                            <option value="'.$precio_de_lista.'">$'.$precio_de_lista.'</option>
-                                        </select>
-                                    </td>
-                                    <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'" disabled></td>
-                                    <td align="center">'.$row['ejemplares'].'</td>
-                                </tr>';
-                        }
+                if(mysqli_num_rows($query) == 0) {
+                    echo "<h2>No hay resltados que coincidan con la búsqueda \"$busqueda\"</h2>";
+                } else {
+                    echo '
+                    <br>
+                    <form method="post">
+                        <table>
+                            <caption class="title"><b>Resultados de "'.$busqueda.'"</caption>
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Disponibles</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                            // Muestra cada libro que coincida con la búsqueda 
+                            while ($row = mysqli_fetch_array($query)) {
+                                $precio_de_lista = ($row['precio_descuento'])*2;
+                                // no permite vender más libros de los que hay disponibles (según inventario), aunque sólo lo evita el html, se puede hacer también
+                                // en php al momento de hacer el query aunque no sé si es demasiada precaución
+                                echo '<tr>
+                                        <td><input class="input enable" type="checkbox" name="busq[]" value="'.$row['id_libros'].'">'.$row['titulo'].'</td>
+                                        <td align="center">
+                                            <select name="precio[]" disabled>
+                                                <option value="'.$row['precio_descuento'].'">$'.$row['precio_descuento'].'</option>
+                                                <option value="'.$precio_de_lista.'">$'.$precio_de_lista.'</option>
+                                            </select>
+                                        </td>
+                                        <td align="center"><input type="number" name="cantidad[]" value="1" min="1" max="'.$row['ejemplares'].'" disabled></td>
+                                        <td align="center">'.$row['ejemplares'].'</td>
+                                    </tr>';
+                            }
 
-                        echo '
-                        </tbody>    
-                    </table>
-                    <div class="boton_vender">
-                        <input type="submit" value="Vender">
-                    </div>
-                </form>';
+                            echo '
+                            </tbody>    
+                        </table>
+                        <div class="boton_vender">
+                            <input type="submit" value="Vender">
+                        </div>
+                    </form>';
+                }
 
             }
 
@@ -244,14 +284,22 @@ if($_GET) {
                     $query2 = mysqli_query($conn, $sql_venta);
                     $query3 = mysqli_query($conn, $sql_registro);
 
-                    // **falta mejorar(confirmar cada venta exitosa)** es temporal
                     if (!$query2) {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     } else {
+                        // solo la uso para evitar problemas con los tipos de comillas
+                        $aux = "this.parentElement.style.display='none';";
+
                         if($cant[$i] > 1) {
-                            echo "Venta de $cant[$i] ejemplares de $libro_vendido[$i] exitosa!<br>";
+                            echo '<div class="alert">
+                                      <span class="closebtn" onclick="'.$aux.'">&times;</span> 
+                                      Venta de '.$cant[$i].' ejemplares de '.$libro_vendido[$i].' exitosa!
+                                </div>';
                         } else {
-                            echo "Venta de un ejemplar de $libro_vendido[$i] exitosa!";
+                            echo '<div class="alert">
+                                      <span class="closebtn" onclick="'.$aux.'">&times;</span> 
+                                      Venta de un ejemplar de '.$libro_vendido[$i].' exitosa!
+                                </div>';
                         }
                     }
                 }
